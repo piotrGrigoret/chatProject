@@ -1,0 +1,404 @@
+html body {
+    height: 100%;
+  }
+.container{
+    height: 100vh;
+    /* border: solid; */
+}
+.titleChat{
+    /* border: solid; */
+    display: grid;
+    grid-template-columns:  auto;
+    height: 7%;
+    background: rgb(44, 43, 57);
+    border-radius: 0.2vw;
+    color: rgb(227, 221, 207);
+
+}
+.nameOfChat{
+    font-weight: 800;
+    font-size:3vh;
+    /* line-height:190%; */
+    /* text-align: center; */
+    /* border: solid   ; */
+    /* margin-top: 1vh; */
+    text-align: center;
+}
+.chat{
+    list-style: none;
+    background: none;
+    margin: 0;       
+    margin-top: 1.4vw;
+    height: 73%;
+    /* border: solid; */
+    color: rgb(227, 221, 207);
+    overflow: auto;
+    display: grid;
+    grid-template-columns: auto 50%;
+    font-family:monospace;
+}
+
+
+.boxMessage{
+    /* border: solid; */
+    grid-column-start: 1;
+    display: grid;
+    grid-template-columns: 5vh auto;
+}
+.boxMessage li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+.imageUserMessage{
+    width: 5vh;
+    height: 5vh;
+    margin-right: 0.2vw;
+    border-radius: 100%;
+}
+.imageUserMessage img{
+    border-radius: 2vw;
+    max-width: 100%;
+    border-radius: 100%;
+    height: auto;
+}
+.other .msg {
+    border-top-left-radius: 0px;
+    box-shadow: -1px 2px 0px rgb(44, 43, 57);
+} 
+ 
+  .other:before {
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    border: 5px solid #263137;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+} 
+
+
+.msg {
+    background: #263137;
+    min-width: 16vh;
+    padding: 1.3vw;
+    border-radius: 0.2vw;
+    word-break: break-all;
+}
+
+.msg .user {
+    font-size: medium;
+    margin: 0 0 0.2vh 0;
+    color: rgb(134, 49, 40);
+
+    font-weight: 900;
+    margin-top: -0.2vw;
+    margin-bottom: 0.2vw;
+    transition: all .2s ease;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.msg .user .range.admin {
+    display: inline-block;
+    /* font-size: 0.8vh; */
+    font-weight: 300;
+    color: #6aea96;
+    padding: 0.5vw;
+    border-radius: 0.3vw;
+    border: solid 1px #6aea96;
+    background: rgba(255,255,255,0);
+    margin-left: 0.5vw;
+    font-size: 1vw;
+
+}
+.msg p {
+    font-weight: 500;
+    margin: 0 0 0.02vw 0;
+    color: rgb(227, 221, 207);
+    margin-top: 0.5vw;
+    transition: all .2s ease;
+    font-size: 1vh;
+    /* text-align: c; */
+    letter-spacing: 1px;
+}
+/* стили для маленьких экранов, например, мобильных телефонов */
+@media only screen and (max-width: 600px) {
+    .msg p {
+      font-size: 17px;
+      font-weight: 100;
+      margin:2vh 2vw 2vh 2vw;
+    }
+  }
+  .msg .user{
+    font-size: 20px;
+  }
+  
+  /* стили для средних экранов, например, планшетов */
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .msg p {
+        font-size: 15px;
+        font-weight: 100;
+        margin: 1vh 0 1vh ;
+    }
+    .msg .user{
+        font-size: 20px;
+      }
+  }
+  
+  /* стили для больших экранов, например, настольных компьютеров */
+  @media only screen and (min-width: 1025px) {
+    .msg p {
+      font-size: 13px;
+    }
+  }
+
+
+
+.msg time {
+    font-size: 0.7vw;
+    color: rgba(0,0,0,.35);
+    margin-top: 0.1vw;
+    float: right;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.msg time:before{
+    content:"\f017";
+    color: #ddd;
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-right: 0.3vw;
+}
+
+
+
+
+/* сообщение пользователя (копия CSS ПЕРВОГО СООБЩЕНИЯ НО С НЕБОЛЬШИМИ ПРАВКАМИ) */
+
+.boxMessageOwn{
+    /* border: solid; */
+    grid-column-start: 2;
+    display: grid;
+    grid-template-columns:  auto 6vh ;
+    /* grid-template-columns: 5vh auto; */
+}
+.boxMessageOwn li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    /* grid-column-start: 2; */
+    /* border: solid; */
+}
+.imageUserMessageOwn{
+     /* border: solid; */
+    width: 5vh;
+    height: 5vh;
+    border-radius: 100%;
+    /* grid-column-start: 3; */
+}
+.imageUserMessageOwn img{
+    border-radius: 2vw;
+    max-width: 100%;
+    border-radius: 100%;
+    height: auto;
+}
+.otherOwn {
+    display: flex;
+    justify-content: flex-end;
+}
+.otherOwn .msgOwn {
+
+        border-top-left-radius: 0px;
+    box-shadow: -1px 2px 0px rgb(44, 43, 57);
+} 
+ 
+  
+.otherOwn:after {
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: -4px;
+    width: 0px;
+    height: 0px;
+    border: 7px solid #272728;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+} 
+
+
+.msgOwn {
+    background: #272728;
+    float: right;
+    
+    min-width: 16vh;
+    padding: 1.3vw;
+    border-radius: 0.4vw;
+    word-break: break-all;
+    /* margin-left: 22vw; */
+    
+}
+
+.msgOwn .userOwn {
+    font-size:20px;
+    margin: 0 0 0.2vh 0;
+    color: rgb(128, 196, 33);
+    font-weight: 900;
+    margin-top: -0.2vw;
+    margin-bottom: 0.2vw;
+    transition: all .2s ease;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.msgOwn .userOwn .range.adminOwn {
+    display: inline-block;
+    /* font-size: 0.8vh; */
+    font-weight: 300;
+    color: #6aea96;
+    padding: 0.5vw;
+    border-radius: 0.3vw;
+    border: solid 1px #6aea96;
+    background: rgba(255,255,255,0);
+    margin-left: 0.5vw;
+    font-size: 1vw;
+
+}
+.msgOwn p {
+    font-weight: 500;
+    margin: 0 0 0.02vw 0;
+    color: rgb(227, 221, 207);
+    margin-top: 0.5vw;
+    transition: all .2s ease;
+    font-size: 1vh;
+    /* text-align: c; */
+    letter-spacing: 1px;
+}
+/* стили для маленьких экранов, например, мобильных телефонов */
+@media only screen and (max-width: 600px) {
+    .msgOwn p {
+      font-size: 17px;
+      font-weight: 100;
+      margin:2vh 2vw 2vh 2vw;
+    }
+  }
+  .msgOwn .user{
+    font-size: 20px;
+  }
+  
+  /* стили для средних экранов, например, планшетов */
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .msgOwn p {
+        font-size: 15px;
+        font-weight: 100;
+        margin: 1vh 0 1vh ;
+    }
+    .msg .user{
+        font-size: 20px;
+      }
+  }
+  
+  /* стили для больших экранов, например, настольных компьютеров */
+  @media only screen and (min-width: 1025px) {
+    .msgOwn p {
+      font-size: 13px;
+    }
+  }
+
+
+
+.msgOwn time {
+    font-size: 0.7vw;
+    color: rgba(0,0,0,.35);
+    margin-top: 0.1vw;
+    float: right;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.msgOwn time:before{
+    content:"\f017";
+    color: #ddd;
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-right: 0.3vw;
+}
+
+
+
+/* отправка сообщения */
+.sendMessage{
+    float: right;
+    color: white;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+.sendMessageDisable{
+    float: right;
+    color: white;
+    opacity: 0.1;
+}
+.emoji{
+
+    position: absolute;
+    /* color: white; */
+    margin-left: 780px;
+    margin-top:-460px;
+    /* border: solid; */
+    cursor: pointer;
+
+}
+.emojiOpen{
+    float: right;
+    color: white;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .emojiOpen{
+        display: none;
+    }
+}
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .emojiOpen{
+        display: none;
+    }
+}
+::-webkit-scrollbar {
+    width: 0.4vw; /* ширина для вертикального скролла */
+    height: 0.2vw; /* высота для горизонтального скролла */
+    border-radius: 9em;
+    /* background-color: #1b1584; */
+    /* background: rgb(44, 43, 57); */
+
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ced3d7;
+
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #757b79;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #818fa9;
+}
+
+
+  
+
+
+
+

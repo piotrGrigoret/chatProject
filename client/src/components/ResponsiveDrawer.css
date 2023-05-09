@@ -1,0 +1,97 @@
+
+    .hidden-menu {
+    display: block;
+    position: fixed;
+    list-style:none;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    width: 200px;
+    background: rgb(40, 40, 53);
+
+    /* background: #263137; */
+
+    height: 100%;
+    top: 0;
+    left: -200px;
+    transition: left .2s;
+    z-index: 2;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    }
+    .hidden-menu li a {text-decoration: none; color:#cacaca;}
+    .hidden-menu li a:hover {color:#fff;}
+    /*скрываем инпут чекбокс*/
+    .hidden-menu-ticker {
+    display: none;
+    }
+    /*общие стили значка-гамбургера, самого лэйбла*/
+    .btn-menu {
+        margin-top: 16.5px;
+        margin-left: 12px;
+        color: #fff;
+    /* background-color: #e8e0e0; */
+    padding: 2px;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+    transition: left .23s;
+    z-index: 3;
+    width: 20px;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .btn-menu{
+            margin-top: 13px;
+
+        }
+      }
+      
+    /*общие стили полосок*/
+    .btn-menu span {
+    display: block;
+    height: 2px;
+    background-color: #f8fcff;
+
+    margin: 5px 0 0;
+    transition: all .1s linear .23s;
+    position: relative;
+    }
+    /*прибиваем к верху лэйбла первую полоску*/
+    .btn-menu span.first {
+    margin-top: 0;
+    }
+    /*при нажатии на бургер двигаем его и делаем другой фон бургеру*/
+    .hidden-menu-ticker:checked ~ .btn-menu {
+    left: 160px;
+
+    }
+    /*и дальше стили меняющие бургер, двигающие менюшку по событию - нажатие на значек бургера*/
+    .hidden-menu-ticker:checked ~ .hidden-menu {
+    left: 0;
+    }
+    .hidden-menu-ticker:checked ~ .btn-menu span.first {
+    -webkit-transform: rotate(45deg);
+    top: 7px;
+    background-color: #fff;
+
+}
+    .hidden-menu-ticker:checked ~ .btn-menu span.second {
+    opacity: 0;
+    }
+    .hidden-menu-ticker:checked ~ .btn-menu span.third {
+    -webkit-transform: rotate(-45deg);
+    top: -7px;
+    background-color: #fff;
+    }
+    /*ну а тут такое, стиль заголовка, шоб симпотичнее было :)*/
+  
+    h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 17px;
+    font-weight: normal;
+    }
