@@ -25,7 +25,8 @@ const io = new Server(server, {
     cors:{
         origin:[
             'http://localhost:3000',
-            'https://chatappserver-bwn9.onrender.com'
+            'https://chatappserver-bwn9.onrender.com',
+            'https://chatapp-vn5z.onrender.com',
         ],
         methods: ["GET", "POST"],
         
