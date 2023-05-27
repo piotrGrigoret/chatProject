@@ -1,36 +1,78 @@
 
     .hidden-menu {
-    display: block;
-    position: fixed;
-    list-style:none;
-    padding: 10px;
-    margin: 0;
-    box-sizing: border-box;
-    width: 200px;
-    background: rgb(40, 40, 53);
+        display: block;
+        position: fixed;
+        list-style:none;
+        padding: 10px;
+        margin: 0;
+        box-sizing: border-box;
+        width: 350px;
+        background: rgb(40, 40, 53);
 
-    /* background: #263137; */
+        height: 100%;
+        top: 0;
+        left: -350px;
+        transition: left .2s;
+        z-index: 2;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
 
-    height: 100%;
-    top: 0;
-    left: -200px;
-    transition: left .2s;
-    z-index: 2;
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
     }
-    .hidden-menu li a {text-decoration: none; color:#cacaca;}
-    .hidden-menu li a:hover {color:#fff;}
+    .hidden-menu .icon{
+        /* border: solid; */
+        opacity: 0.5;
+        width: 30px;
+        cursor: pointer;
+        margin-top: 7.5px;
+        margin-left:280px;        
+        transition: 0.4s;
+    }
+    .hidden-menu .icon:hover{
+        /* border: solid; */
+        opacity: 1;
+              
+    }
+    .recentActorsIcon{
+        color: white;
+    }
+    /* .hidden-menu div{
+        margin-top: 20px;
+        width: 110%;
+        margin-left: -10px;
+        overflow: auto;
+    } */
+    .hiddenMenuBoxMessages{
+        /* border: solid; */
+        width: 105%;
+        height: 93%; /* Set a specific height */
+        margin-top: 20px;
+        overflow: auto;
+        margin-left: -10px;
+
+    }
+    
+    .hidden-menu div li{
+        border: solid black;
+        height: 10vh;
+        color: white;
+    }
+    .hidden-menu .notLoginDrawerMenu{
+        color: white;
+        text-align:  center;
+        margin-top:260px;
+        font-size: 23px;
+    
+    }
+    
     /*скрываем инпут чекбокс*/
     .hidden-menu-ticker {
-    display: none;
+        display: none;
     }
     /*общие стили значка-гамбургера, самого лэйбла*/
     .btn-menu {
         margin-top: 16.5px;
         margin-left: 12px;
         color: #fff;
-    /* background-color: #e8e0e0; */
     padding: 2px;
     position: fixed;
     top: 5px;
@@ -43,11 +85,26 @@
     -webkit-backface-visibility: hidden;
     }
 
-    @media only screen and (max-width: 600px) {
-        .btn-menu{
-            margin-top: 13px;
-
-        }
+    @media only screen and (max-width: 1024px) {
+    .hidden-menu {
+        width: 500px;
+        left: -500px;
+        
+    }
+    .hidden-menu div{
+        width: 100%;
+    }
+    .btn-menu{
+        margin-top: 14px;
+        /* margin-left: 300px; */
+    }
+    .hidden-menu-ticker:checked ~ .btn-menu {
+        margin-left: 155px;
+    }
+    .hidden-menu .icon{
+        margin-top: 5px;
+        margin-left:420px;        
+    }
       }
       
     /*общие стили полосок*/
@@ -62,11 +119,11 @@
     }
     /*прибиваем к верху лэйбла первую полоску*/
     .btn-menu span.first {
-    margin-top: 0;
+    margin-top: 0px;
     }
     /*при нажатии на бургер двигаем его и делаем другой фон бургеру*/
     .hidden-menu-ticker:checked ~ .btn-menu {
-    left: 160px;
+    left: 305px;
 
     }
     /*и дальше стили меняющие бургер, двигающие менюшку по событию - нажатие на значек бургера*/
@@ -92,6 +149,107 @@
     h1 {
     margin: 0;
     padding: 0;
-    font-size: 17px;
+    font-size: 19px;
     font-weight: normal;
     }
+
+    @media only screen and (min-width: 1025px) {
+
+ .hiddenMenuBoxMessage{
+    height: 90px;
+    width: 100%;
+    cursor: pointer;
+    /* border: solid; */
+    transition: 0.4s;
+    display: grid;
+    grid-template-columns: 25% auto 14%;
+    grid-template-rows: 15% 40% auto 18%;
+ }   
+ .hiddenMenuBoxMessage:hover{
+    background: rgb(58, 58, 76);
+    
+ }
+.boxImageMessage{
+    height: 70px;
+}
+.boxImageMessage img{
+    margin-left: 6px;
+    margin-top: 15px;
+    height: 90%;
+    border-radius: 100%;
+}
+.chatInMenuTitle{
+    color:white;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    font-weight: 700;
+}
+.timeLastMessageInChat{
+    color:white;
+    grid-row-start: 2;
+    grid-column-start: 3;
+    opacity: 0.6;
+}
+.lastMessageInChat{
+    color:white;
+    grid-column-start: 2;
+    grid-row-start: 3;
+ overflow:hidden;
+ font-size: 13px;
+}
+}
+
+
+@media only screen and (max-width: 1024px) {
+
+    .hiddenMenuBoxMessage{
+        height: 90px;
+        width: 100%;
+        cursor: pointer;
+        /* border: solid; */
+        transition: 0.4s;
+        display: grid;
+        grid-template-columns: 18% auto 15%;
+        grid-template-rows: 15% 45% auto 8%  ;
+     }   
+     .hiddenMenuBoxMessage:hover{
+        background: rgb(58, 58, 76);
+        
+     }
+    .boxImageMessage{
+        height: 70px;
+    
+        /* border: solid; */
+    }
+    .boxImageMessage img{
+        margin-left: 6px;
+        margin-top: 14px;
+        height: 90%; 
+        border-radius: 100%;
+    }
+    .chatInMenuTitle{
+        color:white;
+        grid-column-start: 2;
+        grid-row-start: 2;
+    }
+    .timeLastMessageInChat{
+        color:white;
+        grid-row-start: 2;
+        grid-column-start: 3;
+        opacity: 0.6;
+    }
+    .lastMessageInChat{
+        color:white;
+        grid-column-start: 2;
+        grid-row-start: 3;
+     overflow:hidden;
+        font-size: 13px;
+    }
+}
+    
+
+
+
+
+
+

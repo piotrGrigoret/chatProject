@@ -1,0 +1,39 @@
+.boxProfile{
+    display: grid;
+    grid-template-columns: auto 10% 65%;
+    background-color: "rgb(40, 40, 53)";
+    grid-template-rows: 20% 35% 20% 20% 5%;
+}
+
+.imgProfile img{
+    width: 100%;
+    border-radius: 100%;
+    border: solid rgb(91, 80, 80);
+    
+}
+.imgProfile div{
+    text-align: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.imgProfile div:hover{
+    color: rgb(51, 51, 199);
+}
+.userDATA{
+    grid-column-start: 3;
+    display: grid;
+    grid-template-columns: 35% auto 5%;
+    /* border: solid; */
+}
+.userDATA .text{
+    height: 30px;
+    margin-top: 19px;
+    /* border: solid; */
+}
+.changePassword{
+    transition: 1s;
+    color: white;
+}
+.changePassword:hover{
+    color: rgb(58, 58, 227);
+}

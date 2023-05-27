@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import "./Chat.css";
+import ScrollToBottom from 'react-scroll-to-bottom';
+import moment from 'moment';
+import url from "../constants";
 
 // import io from 'socket.io-client';
 // const socket = io('http://localhost:5000');
 
-import { FaSmile } from 'react-icons/fa';
 import EmojiPicker from 'emoji-picker-react';
 import MenuAppBar from '../components/MenuAppBar'
 import {Container, Box, TextField, containerClasses} from "@mui/material"
@@ -16,51 +18,95 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 
 export default class Chat extends Component {
-    async componentDidMount (){
-        try {
-            const response = await axios.post("http://localhost:5000/chat/getMessages", this.state.message);
-            this.setState({chatMessages: response.data});
-            // console.log(this.state.chatMessages);
-            // console.log(socket);
-            } catch (error) {
-            console.log(error);
-          }
-    }
+    isUserRegistrate = JSON.parse(localStorage.getItem('user'));
+    chatLocalStorage = JSON.parse(localStorage.getItem('chat'));
+    ResponsiveDrawerRef = React.createRef();
     
-    forAreaVar = "";
     constructor(props){
         super(props);
         this.state = {
-            message: {
+
+            chatMessages: [],
+            chat: this.chatLocalStorage,
+            chatsList: [],
+            message: this.isUserRegistrate ? 
+            {
                 text: "",
                 date: new Date(),
-                nickname: "Anonim",
-                image: "",
+                nickname: this.isUserRegistrate.nickname,
+                image: this.isUserRegistrate.image,
+                userID: this.isUserRegistrate._id,
+                chatID:this.chatLocalStorage._id
+            }
+            :
+            {
+                text: "",
+                date: new Date(),
+                nickname: "Anonimous",
+                image: "/anonim4.jpg",
                 userID: "Anonim",
-
+                chatID:this.chatLocalStorage._id
             },
             forArea: this.forAreaVar,
-            chatMessages: [],
             changeOpeningOfEmoji : false,
             chooseEmoji: null,
         }
-
-
     }
+    
+    updateChat = async (newChat) => {
+        localStorage.setItem('chat', JSON.stringify(newChat));
+        await this.setState({ chat: newChat });
+        
+        const response = await axios.post(url + "/chat/getMessages", newChat);
+        const chatMessages = response.data;
+        await this.setState({ chatMessages });
+      
+        // Вызываем функцию обратного вызова, передавая новые значения chat и chatMessages
+        // this.props.updateChat(newChat, chatMessages);
+        
+    }
+     
+
+    async componentDidMount (){
+        try {
+
+            const responseChatList = await axios.post(url + "/chat/getChats");
+            await this.setState({chatsList: responseChatList.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
+
+
+            const response = await axios.post(url + "/chat/getMessages", this.state.chat);
+            this.setState({chatMessages: response.data});
+            
+            
+            this.props.socket.on("receive_message", (data) => {
+                const isMessage = response.data.find((message) => { 
+                    
+                    return new Date(message.text) == new Date(data.text)  
+                    
+                });
+                this.setState({chatMessages:  [...this.state.chatMessages, data]});        
+            });
+
+        } catch (error) {
+            console.log(error);
+          }
+    }
+      
+    forAreaVar = "";
+    
     messageCompleteHandler = (event, e) =>{
         if(event.emoji){
-            console.log(event.emoji);
-            const messageCopy = {...this.state.message, text: this.state.message.text + event.emoji};
+            // console.log(event.emoji);
+            const messageCopy = {...this.state.message, text: this.state.message.text + event.emoji, chatID: this.state.chat._id, date: new Date()};
             this.setState({message: messageCopy});
             this.setState({forArea: this.state.forArea + event.emoji});
-
         }else{
-            const messageCopy = {...this.state.message, text: event.target.value};
+            const messageCopy = {...this.state.message, text: event.target.value, chatID: this.state.chat._id, date: new Date()};
             this.setState({message: messageCopy});
             this.setState({forArea: event.target.value});      
+    
         }
       
-        console.log(this.state.forArea);
     }
 
     handleKeyPress = (event) => {
@@ -77,19 +123,33 @@ export default class Chat extends Component {
             const copyChatMesasges = [...this.state.chatMessages, this.state.message];
             const copyMessage = {...this.state.message};
             // console.log(copyChatMesasges);
-            this.setState({chatMessages: copyChatMesasges});
             this.setState({
-                message:
-                { 
+                message: this.isUserRegistrate ? 
+                {
                     text: "",
                     date: new Date(),
-                    nickname: "Anonim",
-                    image: "",
+                    nickname: this.isUserRegistrate.nickname,
+                    image: this.isUserRegistrate.image,
+                    userID: this.isUserRegistrate._id,
+                    chatID: this.state.chat._id
+    
+                }
+                :
+                {
+                    text: "",
+                    date: new Date(),
+                    nickname: "Anonimous",
+                    image: "/anonim4.jpg",
                     userID: "Anonim",
-                }});
+                    chatID: this.state.chat._id
+                }
+            });
             this.setState({forArea: ""});
-            console.log(this.state.message);
-            await axios.post("http://localhost:5000/chat/addMesage", copyMessage); 
+            // console.log(copyMessage);
+            this.ResponsiveDrawerRef.current.updateSortChatList();
+
+            await this.props.socket.emit("send_message", copyMessage);
+            await axios.post(url + "/chat/addMesage", copyMessage); 
             
 
         }
@@ -105,48 +165,70 @@ export default class Chat extends Component {
         }
     }
   
+  
     render() {
         return (
             <div className='container' >
                 <MenuAppBar/>
-          <ResponsiveDrawer/>
+                <ResponsiveDrawer
+                    updateChat = {this.updateChat}
+                    lastMessage = {this.state.message}
+                    chatsList = {this.state.chatsList}
+                    ref={this.ResponsiveDrawerRef}
+                />
                
                 <Container 
                     sx={{ 
                         mt:1,
                         height: "89%",
-                        // border: "solid"
                     }}
                 >
                     <div className='titleChat'>
                         <div></div>                    
-                        <div className='nameOfChat'><div>Chat Test</div></div>
-                    </div>
+                        {this.state.chat !== {} && 
+                            <div className='nameOfChat'><div>{this.state.chat.name}</div></div>
+                        }
+                        </div>
                     <div className='chat'>
-                       { this.state.chatMessages.map((chatMessage) =>
-                        <>
-                            <div className='boxMessage' key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
-                                <div className='imageUserMessage'><img  src="ispanka.jpg"  alt="/ispanka.jpg" /></div>
-                                <li className="other"  >
-                                    <div className="msg" style={{background: "#263137"}}>
-                                        <div className="user">{chatMessage.nickname}</div>
-                                        <p>{chatMessage.text}</p>
-                                    </div>
-                                </li>
-                            </div>
-                            {/* <div className='boxMessageOwn' key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
-                                <li className="otherOwn"  >
-                                    <div className= "msgOwn">
-                                        <div className="userOwn">{chatMessage.nickname}</div>
-                                        <p>{chatMessage.text}</p>
-                                    </div>
-                                </li>
-                                <div className='imageUserMessageOwn'><img  src="ispanka.jpg"  alt="/ispanka.jpg" /></div>
+                        {this.state.chat !== {} ? 
+                        <ScrollToBottom className='message-container'>
+                            { this.state.chatMessages.map((chatMessage, index) =>
+                                this.isUserRegistrate._id == chatMessage.userID ?
 
-                            </div> */}
-                            </>                          
-                        )}
+                                        <div className='boxMessageOwn' key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
+                                            <li className="otherOwn"  >
+                                                <div className= "msgOwn">
+                                                    <div className="userOwn">{chatMessage.nickname}</div>
+                                                    <p>{chatMessage.text}</p>
+                                                    <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
+                                            
+                                                </div>
+                                            </li>
+                                            <div className='imageUserMessageOwn'><img  src={chatMessage.image}  alt="/ispanka.jpg" /></div>
+                                        </div>
+                                        :
+                                        <div className='boxMessage' key = {chatMessage._id ? chatMessage._id : index}>
+                                        <div className='imageUserMessage'><img  src={chatMessage.image}  alt="/dev.jpg" /></div>
+                                        <li className="other"  >
+                                            <div className="msg" style={{background: "#263137"}}>
+                                                <div className="user">{chatMessage.nickname}</div>
+                                                <p>{chatMessage.text}</p>
+                                                <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
+                                            </div>
+                                        </li>
+                                    </div>
+    
+                                )}
+                        </ScrollToBottom>
+                        :
+                        <div className='setChatAnunt'>Choose who you would like to write to</div>
+                        }
                     </div>
+                    
+
+                                
+                {this.state.chat !== {} && 
+
                     <div>
                         <div onClick={this.sendMesageHandler} className= {this.state.forArea.length > 0 ? 'sendMessage' : 'sendMessageDisable'}><SendIcon/></div>
                         
@@ -185,7 +267,7 @@ export default class Chat extends Component {
                         />
                         
                     </div>
-                   
+                }
                 </Container>
             </div>
 

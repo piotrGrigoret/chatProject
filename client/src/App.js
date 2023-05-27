@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Registration from './pages/Registration';
+import io from 'socket.io-client';
 import Chat  from './pages/Chat';
+import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
+import url from "./constants";
 export default class App extends Component {
   constructor(props){
     super(props);
@@ -9,12 +12,34 @@ export default class App extends Component {
 
     }
   }
+  socket = io.connect(url);
+
+  
 
   render() {
     return (
         <>
-          {/* <Registration/> */}
-         <Chat/>    
+         <Router>
+            
+            <Routes>
+            <Route 
+                path ='/'
+                element = {
+                <Chat
+                  socket={this.socket}
+                />  
+                }
+              />
+              <Route 
+                path ='/registration'
+                element = {
+                  <Registration/>
+                }
+              />
+              
+              
+            </Routes>
+          </Router>
         </>        
 
       )

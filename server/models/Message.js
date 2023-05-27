@@ -7,8 +7,8 @@ const Message = new Schema({
     date : {type: String, default: new Date()},
     nickname: {type: String,  default: ""},
     image : {type: String,  default: "" },
-    userID: {type: String,  default: "" },
-
+    userID: {type: String,  required: true},
+    chatID: {type: String,  required: true}
 });
 
 module.exports = model('Message', Message);

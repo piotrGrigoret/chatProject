@@ -1,0 +1,11 @@
+.loginButton{
+transition: 0.2s;
+cursor: pointer;
+}
+.loginButton:hover{
+    opacity: 0.7;
+}
+.linkRegistration{
+    text-decoration: none;
+    color: white;  
+}
