@@ -13,9 +13,20 @@ export default class App extends Component {
     }
   }
   socket = io.connect(url);
-
   
-
+  componentDidMount = () =>{
+   const isUserRegistrate = JSON.parse(localStorage.getItem('user'));
+   
+  if(!isUserRegistrate && isUserRegistrate !== false){
+    localStorage.setItem('user', false);
+    this.reload();
+  } 
+  }
+reload = () =>{
+  setTimeout(() => {
+    window.location.reload();
+  }, 220);
+}
   render() {
     return (
         <>
