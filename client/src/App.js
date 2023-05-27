@@ -23,9 +23,7 @@ export default class App extends Component {
   } 
   }
 reload = () =>{
-  setTimeout(() => {
     window.location.reload();
-  }, 220);
 }
   render() {
     return (
