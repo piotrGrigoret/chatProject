@@ -23,7 +23,10 @@ app.use("/chat", chatRouter);
 const server = http.createServer(app);
 const io = new Server(server, {
     cors:{
-        origin:'http://localhost:3000',
+        origin:[
+            'http://localhost:3000',
+            'https://chatappserver-bwn9.onrender.com'
+        ],
         methods: ["GET", "POST"],
         
     }

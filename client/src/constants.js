@@ -1,6 +1,6 @@
-const ENV = 'dev';
+const ENV = 'prod';
 const urls = {
-    prod: 'https://newsserver-vrh0.onrender.com',
+    prod: 'https://chatappserver-bwn9.onrender.com',
     dev: 'http://localhost:3001',
 };        
 const url = urls[ENV];
