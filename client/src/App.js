@@ -14,13 +14,32 @@ export default class App extends Component {
   }
   socket = io.connect(url);
   
+   isUserRegistrate = JSON.parse(localStorage.getItem('user'));
+   isChatLocalStorageActiv = JSON.parse(localStorage.getItem('chat'));
+  
   componentDidMount = () =>{
-   const isUserRegistrate = JSON.parse(localStorage.getItem('user'));
-   
-  if(!isUserRegistrate && isUserRegistrate !== false){
-    localStorage.setItem('user', false);
+  
+  
+  if(!this.isChatLocalStorageActiv){
+    localStorage.setItem('chat', JSON.stringify(
+      {
+        _id:"646fb927047547a251e85c4a",
+        date:"Thu May 25 2023 22:25:50 GMT+0300 (Восточная Европа, летнее время)",
+        name: "Common Chat",
+        image: "/defaultChat.png",
+        userID: "64660d2e6f1763560679c74d",
+        privat: false,
+        lastMessageTime:"",
+        lastMessage:""
+      }
+    ));
     this.reload();
-  } 
+  }
+  
+  if(!this.isUserRegistrate && this.isUserRegistrate !== false){
+      localStorage.setItem('user', false);
+      this.reload();
+    } 
   }
 reload = () =>{
     window.location.reload();
@@ -31,6 +50,7 @@ reload = () =>{
          <Router>
             
             <Routes>
+          {this.isChatLocalStorageActiv &&
             <Route 
                 path ='/'
                 element = {
@@ -39,6 +59,7 @@ reload = () =>{
                 />  
                 }
               />
+          }
               <Route 
                 path ='/registration'
                 element = {

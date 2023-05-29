@@ -69,7 +69,7 @@ export default class Chat extends Component {
 
     async componentDidMount (){
         try {
-
+            
             const responseChatList = await axios.post(url + "/chat/getChats");
             await this.setState({chatsList: responseChatList.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
 
