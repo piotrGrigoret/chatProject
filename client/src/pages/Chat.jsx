@@ -15,7 +15,8 @@ import SendIcon from '@mui/icons-material/Send';
 // import ResponsiveDrawer from './components/ResponsiveDrawer';
 import ResponsiveDrawer from '../components/ResponsiveDrawer';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IconButton from '@mui/material/IconButton';
 
 export default class Chat extends Component {
     isUserRegistrate = JSON.parse(localStorage.getItem('user'));
@@ -50,19 +51,22 @@ export default class Chat extends Component {
             forArea: this.forAreaVar,
             changeOpeningOfEmoji : false,
             chooseEmoji: null,
+            displayAllElOnSmallEcran: true,
         }
     }
     
     updateChat = async (newChat) => {
+        
         localStorage.setItem('chat', JSON.stringify(newChat));
         await this.setState({ chat: newChat });
         
         const response = await axios.post(url + "/chat/getMessages", newChat);
         const chatMessages = response.data;
         await this.setState({ chatMessages });
-      
-        // Вызываем функцию обратного вызова, передавая новые значения chat и chatMessages
-        // this.props.updateChat(newChat, chatMessages);
+        
+        
+        this.goToChats();
+        
         
     }
      
@@ -165,31 +169,47 @@ export default class Chat extends Component {
         }
     }
   
-  
+    goToChats = () =>{
+        if(this.state.displayAllElOnSmallEcran){
+            this.setState({displayAllElOnSmallEcran: false});
+        }else{
+            this.setState({displayAllElOnSmallEcran: true});
+        }
+        this.ResponsiveDrawerRef.current.goToChatsMenuOnSmallEcrans();
+    }
     render() {
         return (
             <div className='container' >
-                <MenuAppBar/>
-                <ResponsiveDrawer
-                    updateChat = {this.updateChat}
-                    lastMessage = {this.state.message}
-                    chatsList = {this.state.chatsList}
-                    ref={this.ResponsiveDrawerRef}
-                />
+              
                
                 <Container 
                     sx={{ 
-                        mt:1,
-                        height: "89%",
+                        mt:0,
+                        height: "100%",
                     }}
                 >
+                    <MenuAppBar/>
+                    <ResponsiveDrawer
+                        updateChat = {this.updateChat}
+                        lastMessage = {this.state.message}
+                        chatsList = {this.state.chatsList}
+                        ref={this.ResponsiveDrawerRef}
+                    />
                     <div className='titleChat'>
-                        <div></div>                    
-                        {this.state.chat !== {} && 
-                            <div className='nameOfChat'><div>{this.state.chat.name}</div></div>
-                        }
+                        <div className='arrowBox'>
+                        <IconButton
+                        onClick = {this.goToChats}
+                            color="inherit"
+                        > 
+                            <ArrowBackIcon  />
+                        </IconButton>
                         </div>
-                    <div className='chat'>
+                        {this.state.chat !== {} && 
+                            <div className={this.state.displayAllElOnSmallEcran == true ? 'nameOfChat' : 'nameOfChatDisableOnMobile'}><div>{this.state.chat.name}</div></div>
+                        }
+                    </div>
+                    
+                    <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
                         {this.state.chat !== {} ? 
                         <ScrollToBottom className='message-container'>
                             { this.state.chatMessages.map((chatMessage, index) =>
@@ -229,7 +249,7 @@ export default class Chat extends Component {
                                 
                 {this.state.chat !== {} && 
 
-                    <div>
+                    <div className={this.state.displayAllElOnSmallEcran == true ? 'textFieldContainer' : 'textFieldContainerDisableOnMobile'}>
                         <div onClick={this.sendMesageHandler} className= {this.state.forArea.length > 0 ? 'sendMessage' : 'sendMessageDisable'}><SendIcon/></div>
                         
                             <div onClick={this.openEmojiHandler} className='emojiOpen'><EmojiEmotionsIcon/></div>

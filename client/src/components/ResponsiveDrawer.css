@@ -1,23 +1,44 @@
+.chatsBox{
+    float: left;
+    margin-top: 1vh;
+    height: 85%;
+    width: 330px;
+}
+.notLoginDrawerMenu{
+    color: wheat;
+    margin-top: 60%;
+    text-align: center;
+    /* border: solid; */
+}
+/* 
+.hidden-menu {
+    display: block;
+    position: fixed;
+    list-style:none;
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    width: 350px;
+    background: rgb(40, 40, 53);
 
-    .hidden-menu {
-        display: block;
-        position: fixed;
-        list-style:none;
-        padding: 10px;
-        margin: 0;
-        box-sizing: border-box;
-        width: 350px;
-        background: rgb(40, 40, 53);
+    height: 100%;
+    top: 0;
+    left: -350px;
+    transition: left .2s;
+    z-index: 2;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
 
-        height: 100%;
-        top: 0;
-        left: -350px;
-        transition: left .2s;
-        z-index: 2;
-        -webkit-transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-
-    }
+} */
+.hidden-menu {
+    padding: 10px;
+    margin: 0;
+    background: rgb(40, 40, 53);
+    top: 0;
+    border-radius: 0.5vh;
+    height: 100%;
+}
+ 
     .hidden-menu .icon{
         /* border: solid; */
         opacity: 0.5;
@@ -35,218 +56,197 @@
     .recentActorsIcon{
         color: white;
     }
-    /* .hidden-menu div{
-        margin-top: 20px;
-        width: 110%;
-        margin-left: -10px;
-        overflow: auto;
-    } */
+    
     .hiddenMenuBoxMessages{
         /* border: solid; */
         width: 105%;
-        height: 93%; /* Set a specific height */
+        height: 90%; /* Set a specific height */
         margin-top: 20px;
         overflow: auto;
         margin-left: -10px;
+        background: rgb(40, 40, 53);
+
 
     }
-    
-    .hidden-menu div li{
-        border: solid black;
-        height: 10vh;
-        color: white;
-    }
-    .hidden-menu .notLoginDrawerMenu{
-        color: white;
-        text-align:  center;
-        margin-top:260px;
-        font-size: 23px;
-    
-    }
-    
-    /*скрываем инпут чекбокс*/
-    .hidden-menu-ticker {
-        display: none;
-    }
-    /*общие стили значка-гамбургера, самого лэйбла*/
-    .btn-menu {
-        margin-top: 16.5px;
-        margin-left: 12px;
-        color: #fff;
-    padding: 2px;
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    cursor: pointer;
-    transition: left .23s;
-    z-index: 3;
-    width: 20px;
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    }
 
-    @media only screen and (max-width: 1024px) {
-    .hidden-menu {
-        width: 500px;
-        left: -500px;
+
+    @media only screen and (max-width: 800px) {
+        .hidden-menu .icon{
+            /* border: solid; */
+            opacity: 0.5;
+            width: 40px;
+            cursor: pointer;
+            margin-left:4px;        
+            transition: 0.4s;
+        }
+        .chatsBox{
+            display: none;
+        }
+        .chatsBoxSmallEcranes{
+            
+            width: 100%;
+            height: 80%;  
+            margin-top: 10px;          
+        }
+        .hiddenMenuBoxMessage{
+            border-radius: 8px;
+            height: 90px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.4s;
+            display: grid;
+            grid-template-columns: 35% auto 15%;
+            grid-template-rows: 15% 45% auto 8%  ;
+         }   
+         .hiddenMenuBoxMessage:hover{
+            border-radius: 8px;
+
+            background: rgb(58, 58, 76);
+            
+         }
+        .boxImageMessage{
+            height: 70px;
         
-    }
-    .hidden-menu div{
-        width: 100%;
-    }
-    .btn-menu{
-        margin-top: 14px;
-        /* margin-left: 300px; */
-    }
-    .hidden-menu-ticker:checked ~ .btn-menu {
-        margin-left: 155px;
-    }
-    .hidden-menu .icon{
-        margin-top: 5px;
-        margin-left:420px;        
-    }
+        }
+        .boxImageMessage img{
+            margin-left: 6px;
+            margin-top: 14px;
+            height: 70%; 
+            border-radius: 100%;
+        }
+        .chatInMenuTitle{
+            color:white;
+            grid-column-start: 2;
+            grid-row-start: 2;
+            font-size: 14px;
+        }
+        .timeLastMessageInChat{
+            color:white;
+            grid-row-start: 2;
+            grid-column-start: 3;
+            opacity: 0.6;
+            font-size: 12px;
+        }
+        .lastMessageInChat{
+            color:white;
+            grid-column-start: 2;
+            grid-row-start: 3;
+            overflow:hidden;
+            font-size: 11px;
+        }
       }
-      
-    /*общие стили полосок*/
-    .btn-menu span {
-    display: block;
-    height: 2px;
-    background-color: #f8fcff;
 
-    margin: 5px 0 0;
-    transition: all .1s linear .23s;
-    position: relative;
-    }
-    /*прибиваем к верху лэйбла первую полоску*/
-    .btn-menu span.first {
-    margin-top: 0px;
-    }
-    /*при нажатии на бургер двигаем его и делаем другой фон бургеру*/
-    .hidden-menu-ticker:checked ~ .btn-menu {
-    left: 305px;
-
-    }
-    /*и дальше стили меняющие бургер, двигающие менюшку по событию - нажатие на значек бургера*/
-    .hidden-menu-ticker:checked ~ .hidden-menu {
-    left: 0;
-    }
-    .hidden-menu-ticker:checked ~ .btn-menu span.first {
-    -webkit-transform: rotate(45deg);
-    top: 7px;
-    background-color: #fff;
-
-}
-    .hidden-menu-ticker:checked ~ .btn-menu span.second {
-    opacity: 0;
-    }
-    .hidden-menu-ticker:checked ~ .btn-menu span.third {
-    -webkit-transform: rotate(-45deg);
-    top: -7px;
-    background-color: #fff;
-    }
-    /*ну а тут такое, стиль заголовка, шоб симпотичнее было :)*/
-  
-    h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 19px;
-    font-weight: normal;
-    }
-
-    @media only screen and (min-width: 1025px) {
-
- .hiddenMenuBoxMessage{
-    height: 90px;
-    width: 100%;
-    cursor: pointer;
-    /* border: solid; */
-    transition: 0.4s;
-    display: grid;
-    grid-template-columns: 25% auto 14%;
-    grid-template-rows: 15% 40% auto 18%;
- }   
- .hiddenMenuBoxMessage:hover{
-    background: rgb(58, 58, 76);
-    
- }
-.boxImageMessage{
-    height: 70px;
-}
-.boxImageMessage img{
-    margin-left: 6px;
-    margin-top: 15px;
-    height: 90%;
-    border-radius: 100%;
-}
-.chatInMenuTitle{
-    color:white;
-    grid-column-start: 2;
-    grid-row-start: 2;
-    font-weight: 700;
-}
-.timeLastMessageInChat{
-    color:white;
-    grid-row-start: 2;
-    grid-column-start: 3;
-    opacity: 0.6;
-}
-.lastMessageInChat{
-    color:white;
-    grid-column-start: 2;
-    grid-row-start: 3;
- overflow:hidden;
- font-size: 13px;
-}
-}
-
-
-@media only screen and (max-width: 1024px) {
-
-    .hiddenMenuBoxMessage{
-        height: 90px;
-        width: 100%;
-        cursor: pointer;
-        /* border: solid; */
-        transition: 0.4s;
-        display: grid;
-        grid-template-columns: 18% auto 15%;
-        grid-template-rows: 15% 45% auto 8%  ;
-     }   
-     .hiddenMenuBoxMessage:hover{
-        background: rgb(58, 58, 76);
+      @media only screen and (min-width: 801px) and (max-width: 1148px) {
+        .hidden-menu .icon{
+            /* border: solid; */
+            opacity: 0.5;
+            width: 40px;
+            cursor: pointer;
+            margin-left:10px;        
+            transition: 0.4s;
+        }
+        .chatsBox{
+            display: none;
+        }
+        .chatsBoxSmallEcranes{
+            
+            width: 100%;
+            height: 80%;  
+            margin-top: 10px;          
+        }
+        .hiddenMenuBoxMessage{
+            height: 90px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.4s;
+            display: grid;
+            grid-template-columns: 18% auto 15%;
+            grid-template-rows: 15% 45% auto 8%  ;
+         }   
+         .hiddenMenuBoxMessage:hover{
+            background: rgb(58, 58, 76);
+            
+         }
+        .boxImageMessage{
+            height: 70px;
         
-     }
-    .boxImageMessage{
-        height: 70px;
+        }
+        .boxImageMessage img{
+            margin-left: 6px;
+            margin-top: 14px;
+            height: 90%; 
+            border-radius: 100%;
+        }
+        .chatInMenuTitle{
+            color:white;
+            grid-column-start: 2;
+            grid-row-start: 2;
+        }
+        .timeLastMessageInChat{
+            color:white;
+            grid-row-start: 2;
+            grid-column-start: 3;
+            opacity: 0.6;
+        }
+        .lastMessageInChat{
+            color:white;
+            grid-column-start: 2;
+            grid-row-start: 3;
+            overflow:hidden;
+            font-size: 13px;
+        }
+    }
+        
     
-        /* border: solid; */
-    }
-    .boxImageMessage img{
-        margin-left: 6px;
-        margin-top: 14px;
-        height: 90%; 
-        border-radius: 100%;
-    }
-    .chatInMenuTitle{
-        color:white;
-        grid-column-start: 2;
-        grid-row-start: 2;
-    }
-    .timeLastMessageInChat{
-        color:white;
-        grid-row-start: 2;
-        grid-column-start: 3;
-        opacity: 0.6;
-    }
-    .lastMessageInChat{
-        color:white;
-        grid-column-start: 2;
-        grid-row-start: 3;
-     overflow:hidden;
+    
+
+    @media only screen and (min-width: 1147px) {
+
+        .hiddenMenuBoxMessage{
+            border-radius: 1vh;
+            height: 90px;
+            width: 100%;
+            cursor: pointer;
+            /* border: solid; */
+            transition: 0.4s;
+            display: grid;
+            grid-template-columns: 25% auto 14%;
+            grid-template-rows: 15% 40% auto 18%;
+        }   
+        .hiddenMenuBoxMessage:hover{
+            background: rgb(58, 58, 76);
+            
+        }
+        .boxImageMessage{
+            height: 70px;
+        }
+        .boxImageMessage img{
+            margin-left: 6px;
+            margin-top: 15px;
+            height: 90%;
+            border-radius: 100%;
+        }
+        .chatInMenuTitle{
+            color:white;
+            grid-column-start: 2;
+            grid-row-start: 2;
+            font-weight: 700;
+        }
+        .timeLastMessageInChat{
+            color:white;
+            grid-row-start: 2;
+            grid-column-start: 3;
+            opacity: 0.6;
+        }
+        .lastMessageInChat{
+            color:white;
+            grid-column-start: 2;
+            grid-row-start: 3;
+        overflow:hidden;
         font-size: 13px;
-    }
+        }
 }
-    
+
 
 
 

@@ -5,7 +5,10 @@ html body {
     height: 100vh;
     /* border: solid; */
 }
+
 .titleChat{
+    width: 70%;
+    float: right;
     /* border: solid; */
     display: grid;
     grid-template-columns:  auto;
@@ -13,27 +16,30 @@ html body {
     background: rgb(44, 43, 57);
     border-radius: 0.2vw;
     color: rgb(227, 221, 207);
+    margin-top: 1vh;
 
 }
 .nameOfChat{
     font-weight: 800;
     font-size:3vh;
-    /* line-height:190%; */
-    /* text-align: center; */
-    /* border: solid   ; */
-    /* margin-top: 1vh; */
+    line-height: 40px;
     text-align: center;
 }
+
 .chat{
+    width: 70%;
+    float: right;
+
     list-style: none;
     background: none;
     margin: 0;       
-    margin-top: 1.4vw;
-    height: 73%;
+    margin-top: 0.4vw;
+    height: 64%;
     /* border: solid; */
     color: rgb(227, 221, 207);
    
-    }
+}
+
 .message-container{
     width: 100%;
   height: 100%;
@@ -56,10 +62,8 @@ html body {
 }
 .imageUserMessage{
     width: 5vh;
-    /* border: solid; */
     height: 5vh;
     margin-right: 0.2vw;
-    /* border-radius: 100%; */
 }
 .imageUserMessage img{
     width: 100%;
@@ -90,7 +94,7 @@ html body {
     background: #263137;
     min-width: 14vh;
     padding: 1vw;
-    border-radius: 0.9vw;
+    border-radius: 14px;
     word-break: break-all;
 }
 
@@ -130,33 +134,132 @@ html body {
     /* text-align: c; */
     letter-spacing: 1px;
 }
+.msg .time {
+    opacity: 0.5;
+    float: right;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+
+
 /* стили для маленьких экранов, например, мобильных телефонов */
 @media only screen and (max-width: 600px) {
+    .chat{
+        width: 100%;
+    
+        list-style: none;
+        background: none;
+        margin: 0;       
+        margin-top: 0.4vw;
+        height: 60%;
+        /* border: solid; */
+        color: rgb(227, 221, 207);
+       
+        }
+
+    .titleChat{
+        width: 100%;
+        display: grid;
+        grid-template-columns:  20% 60% auto;
+        height: 7%;
+        background: rgb(44, 43, 57);
+        border-radius: 0.2vw;
+        color: rgb(227, 221, 207);
+        margin-top: 1vh;
+    
+    }
+    .nameOfChat{
+        font-weight: 800;
+        font-size:3vh;
+        line-height: 40px;
+        /* border: solid; */
+        text-align: center;
+    }
     .msg p {
-      font-size: 24px;
+      font-size: 14px;
       margin:1.4vh 2vw 0vh 1vw;
 
     }
+    .msg .user{
+        font-size: 18px;
+      }
+      .msg .time {
+        opacity: 0.5;
+        float: right;
+        cursor: default;
+        font-size: 12px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    
   }
-  .msg .user{
-    font-size: 27px;
-  }
+  
+ 
   
   /* стили для средних экранов, например, планшетов */
   @media only screen and (min-width: 601px) and (max-width: 1024px) {
-    .msg p {
-        font-size: 24px;
-         margin:1.4vh 2vw 0vh 1vw;
-
+    .chat{
+        width: 100%;
+        float: right;
+    
+        list-style: none;
+        background: none;
+        margin: 0;       
+        margin-top: 0.4vw;
+        height: 60%;
+        /* border: solid; */
+        color: rgb(227, 221, 207);
+       
+        }
+        .titleChat{
+            width: 100%;
+            display: grid;
+            grid-template-columns:  20% 60% auto;
+            height: 7%;
+            background: rgb(44, 43, 57);
+            border-radius: 0.2vw;
+            color: rgb(227, 221, 207);
+            margin-top: 1vh;
         
-    }
-    .msg .user{
-        font-size: 27px;
-      }
+        }
+        .nameOfChat{
+            font-weight: 800;
+            font-size:3vh;
+            line-height: 40px;
+            /* border: solid; */
+            text-align: center;
+        }
+        .msg p {
+            font-size: 14px;
+            margin:1.4vh 2vw 0vh 1vw;
+      
+          }
+          .msg .user{
+              font-size: 18px;
+            }
+            .msg .time {
+                opacity: 0.5;
+                float: right;
+                cursor: default;
+                font-size: 12px;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
   }
   
   /* стили для больших экранов, например, настольных компьютеров */
   @media only screen and (min-width: 1025px) {
+    .arrowBox{
+        display: none;
+    }
     .msg .user{
         font-size: 20px;
       }
@@ -166,24 +269,6 @@ html body {
   }
 
 
-
-.msg .time {
-    /* margin-top: 0.1vw; */
-    opacity: 0.5;
-    float: right;
-    cursor: default;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-/* .msg .time:before{
-    content:"\f017";
-    color: #ddd;
-    font-family: FontAwesome;
-    display: inline-block;
-    margin-right: 0.3vw;
-} */
 
 
 
@@ -200,11 +285,8 @@ html body {
     /* grid-template-columns: 5vh auto; */
 }
 .boxMessageOwn li {
-    padding: 0.5rem;
+    padding: 0.4rem;
     overflow: hidden;
-    /* display: flex; */
-    /* grid-column-start: 2; */
-    /* border: solid; */
 }
 .imageUserMessageOwn{
      /* border: solid; */
@@ -247,86 +329,11 @@ html body {
 .msgOwn {
     background: #272728;
     float: right;
-    
     min-width: 14vh;
     padding: 1vw;
-    border-radius: 0.9vw;
+    border-radius: 14px;
     word-break: break-all;  
 }
-
-.msgOwn .userOwn {
-    font-size:20px;
-    margin: 0 0 0.2vh 0;
-    color: rgb(128, 196, 33);
-    font-weight: 900;
-    margin-top: -0.2vw;
-    margin-bottom: 0.2vw;
-    transition: all .2s ease;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-.msgOwn .userOwn .range.adminOwn {
-    display: inline-block;
-    /* font-size: 0.8vh; */
-    font-weight: 300;
-    color: #6aea96;
-    padding: 0.5vw;
-    border-radius: 0.3vw;
-    border: solid 1px #6aea96;
-    background: rgba(255,255,255,0);
-    margin-left: 0.5vw;
-    font-size: 1vw;
-
-}
-.msgOwn p {
-    font-weight: 500;
-    margin: 0 0 0.02vw 0;
-    color: rgb(227, 221, 207);
-    margin-top: 0.5vw;
-    transition: all .2s ease;
-    font-size: 1vh;
-    /* text-align: c; */
-    letter-spacing: 1px;
-}
-/* стили для маленьких экранов, например, мобильных телефонов */
-@media only screen and (max-width: 600px) {
-    .msgOwn p {
-        font-size: 24px;
-      margin:1.4vh 2vw 0vh 1vw;
-
-        }
-  }
-  .msgOwn .user{
-    font-size: 27px;
-  }
-  
-  /* стили для средних экранов, например, планшетов */
-  @media only screen and (min-width: 601px) and (max-width: 1024px) {
-    .msgOwn p {
-        font-size: 24px;
-        font-weight: 100;
-      margin:1.4vh 2vw 0vh 1vw;
-
-    }
-    .msgOwn .user{
-        font-size: 27px;
-      }
-  }
-  
-  /* стили для больших экранов, например, настольных компьютеров */
-  @media only screen and (min-width: 1025px) {
-    .msgOwn p {
-        font-size: 17px;
-    }
-    .msgOwn .user{
-        font-size: 20px;
-      }
-  }
-  
-
-
 .msgOwn .time {
     margin-top: 0.1vw;
     opacity: 0.5;
@@ -337,17 +344,178 @@ html body {
     -moz-user-select: none;
     -ms-user-select: none;
 }
-/* .msgOwn time:before{
-    content:"\f017";
-    color: #ddd;
-    font-family: FontAwesome;
+/* 
+.msgOwn .userOwn .range.adminOwn {
     display: inline-block;
-    margin-right: 0.3vw;
+    font-weight: 300;
+    color: #6aea96;
+    padding: 0.5vw;
+    border-radius: 5px;
+    border: solid 1px #6aea96;
+    background: rgba(255,255,255,0);
+    margin-left: 0.5vw;
+    font-size: 1vw;
+
 } */
 
 
 
+/* стили для маленьких экранов, например, мобильных телефонов */
+@media only screen and (max-width: 600px) {
+  
+    .msgOwn {
+        background: #272728;
+        float: right;
+        
+        min-width: 14vh;
+        padding: 2vh;
+        border-radius: 14px;
+        word-break: break-all;  
+    }
+    .otherOwn:after {
+        content: "";
+        position: relative;
+        top: 0px;
+        right: 0px;
+        left: -10.5px;
+        width: 0px;
+        height: 0px;
+        border: 10px solid #272728;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+    } 
+  
+    .msgOwn .userOwn {
+        font-size:18px;
+        margin: 0 0 0.2vh 0;
+        color: rgb(128, 196, 33);
+        margin-top: -0.2vw;
+        margin-bottom: 0.2vw;
+        transition: all .2s ease;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+      
+        .msgOwn p {
+            font-weight: 500;
+            /* margin: 0 0 0.02vw 0; */
+            color: rgb(227, 221, 207);
+            transition: all .2s ease;
+            font-size: 14px;
+            /* text-align: c; */
+            letter-spacing: 1px;
+         margin:1vh 2vw 0vh 1vw;
+
+        }
+        .msgOwn .time {
+            margin-top: 1px;
+            font-size: 12px;
+            opacity: 0.5;
+            float: right;
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .textFieldContainer{
+            width: 100%;
+    
+        }
+  }
+ 
+  
+  /* стили для средних экранов, например, планшетов */
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+  
+    .msgOwn {
+        background: #272728;
+        float: right;
+        
+        min-width: 14vh;
+        padding: 2vh;
+        border-radius: 14px;
+        word-break: break-all;  
+    }
+    .otherOwn:after {
+        content: "";
+        position: relative;
+        top: 0px;
+        right: 0px;
+        left: -11.5px;
+        width: 0px;
+        height: 0px;
+        border: 10px solid #272728;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+    } 
+    .msgOwn p {
+        font-size: 14px;
+        font-weight: 100;
+      margin:1.4vh 2vw 0vh 1vw;
+
+    }
+    .msgOwn .userOwn {
+        font-size:18px;
+        margin: 0 0 0.2vh 0;
+        color: rgb(128, 196, 33);
+        margin-top: -0.2vw;
+        margin-bottom: 0.2vw;
+        transition: all .2s ease;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    .msgOwn .time {
+        margin-top: 1px;
+        font-size: 12px;
+        opacity: 0.5;
+        float: right;
+        cursor: default;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+      .textFieldContainer{
+        width: 100%;
+    }
+  }
+  
+  /* стили для больших экранов, например, настольных компьютеров */
+  @media only screen and (min-width: 1025px) {
+    
+    .msgOwn p {
+        font-size: 17px;
+        margin-top: 3px;
+        margin-bottom: 1.4px;
+    }
+    .msgOwn .userOwn {
+        font-size:19px;
+        margin: 0 0 0.2vh 0;
+        color: rgb(128, 196, 33);
+        transition: all .2s ease;
+        font-weight: 900;
+
+    }
+  
+      .textFieldContainer{
+        width: 70%;
+        float: right;
+    }
+  }
+
+
+
+
+
+
 /* отправка сообщения */
+
 .sendMessage{
     float: right;
     color: white;
@@ -365,7 +533,7 @@ html body {
 
     position: absolute;
     /* color: white; */
-    margin-left: 780px;
+    margin-left: 450px;
     margin-top:-460px;
     /* border: solid; */
     cursor: pointer;
@@ -415,4 +583,12 @@ html body {
 
 
 
-
+.nameOfChatDisableOnMobile{
+    display: none;
+}
+.chatDisableOnMobile{
+    display: none;
+}
+.textFieldContainerDisableOnMobile{
+    display: none;
+}

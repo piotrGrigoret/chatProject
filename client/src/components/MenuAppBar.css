@@ -9,3 +9,15 @@ cursor: pointer;
     text-decoration: none;
     color: white;  
 }
+@media only screen and (min-width: 1025px) {
+    .imageTitle{
+        /* border: solid; */
+        width: 180px;
+    }
+}
+@media only screen and (max-width: 1025px) {
+    .imageTitle{
+
+        width: 20vh;
+    }
+}

@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Switch from '@mui/material/Switch';
@@ -12,12 +11,14 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import TelegramIcon from '@mui/icons-material/Telegram';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IconButton from '@mui/material/IconButton';
+
 import Profile from './Profile';
 import "./MenuAppBar.css";
 import url from "../constants";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-
 
 export default function MenuAppBar(props) {
   const isUserRegistrate = JSON.parse(localStorage.getItem('user'));
@@ -79,21 +80,11 @@ export default function MenuAppBar(props) {
         <Toolbar
             sx={{backgroundColor : "rgb(37, 36, 55)"}}
         >
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <IconButton></IconButton>
+         
+
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Message
-            <TelegramIcon sx = {{verticalAlign: "middle"}} />
-
+            <img  className='imageTitle' src="/messages.png" alt="" />
           </Typography>
            
            {props.registraionIdentificator ?

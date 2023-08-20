@@ -19,8 +19,10 @@ export default class ResponsiveDrawer extends Component {
     super(props);
     this.state = {
         isLogin: this.userData,
-        chatsList: this.props.chatsList
-    }
+        chatsList: this.props.chatsList,
+        displayMenuChats: "chatsBox",
+
+      }
   }
 
   updateChatsList = async(newList) => {
@@ -44,7 +46,7 @@ export default class ResponsiveDrawer extends Component {
   }
 
 async componentDidMount(){
-    try {
+  try {
       if(this.props.chatsList[0]){
         this.setState({chatsList: this.props.chatsList});
       }else{
@@ -59,20 +61,33 @@ async componentDidMount(){
     } 
       
   }
+
+  
+  goToChatsMenuOnSmallEcrans = () =>{
+    // console.log(this.state.displayMenuChats);
+    if(this.state.displayMenuChats == "chatsBox"){
+        this.setState({displayMenuChats: "chatsBoxSmallEcranes"});
+      
+    }else{
+        this.setState({displayMenuChats: "chatsBox"});
+      }
+
+  }
+
   render() {
     return (
-      <div>
-            <input type="checkbox" id="hmt" className="hidden-menu-ticker"/>
+      <div className={this.state.displayMenuChats} >
+            {/* <input type="checkbox" id="hmt" className="hidden-menu-ticker"/>
             <label className="btn-menu" htmlFor="hmt">
             <span className="first"></span>
             <span className="second"></span>
             <span className="third"></span>
-            </label>
+            </label> */}
             
             <div className="hidden-menu" >
             
             {this.state.isLogin &&          
-                <FormDialog updateChatsList={this.updateChatsList} chatsList={this.state.chatsList} lastMessage = {this.props.lastMessage}  />
+              <FormDialog updateChatsList={this.updateChatsList} chatsList={this.state.chatsList} lastMessage = {this.props.lastMessage}  />
             }
               {this.state.isLogin ?
                 <div className='hiddenMenuBoxMessages' >

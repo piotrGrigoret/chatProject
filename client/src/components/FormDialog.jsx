@@ -59,7 +59,7 @@ export default function FormDialog(props) {
 
   return (
     <div className='icon'>
-        <AddCircleOutlineIcon onClick={handleClickOpen} style={{ fontSize: 27, color:"white" }}/>
+        <AddCircleOutlineIcon onClick={handleClickOpen} style={{ fontSize: 30, color:"white" }}/>
 
       {/* <Button variant="outlined" >
         Open form dialog
