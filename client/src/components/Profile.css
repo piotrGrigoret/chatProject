@@ -1,7 +1,7 @@
 @media only screen and (max-width: 600px) {
     .boxProfile{
         display: grid;
-        grid-template-columns: auto 5% 65%;
+        grid-template-columns: auto;
         background-color: "rgb(40, 40, 53)";
         /* grid-template-rows: 20% 35% 20% 20% 5%; */
         height: 400px;

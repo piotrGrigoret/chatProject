@@ -46,6 +46,7 @@ export default class Registration extends Component {
         error: "",
         success: ""
       },
+      alertError: "",
     // for inputs values
       login1: "",
       login2: "",
@@ -202,6 +203,7 @@ export default class Registration extends Component {
       <React.Fragment>
         <MenuAppBar
           registraionIdentificator = {"registration"}
+          alertError = {this.state.alertError}
         />
 
       <Container 
