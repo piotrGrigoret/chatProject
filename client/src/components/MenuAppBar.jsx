@@ -26,6 +26,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 export default function MenuAppBar(props) {
   const isUserRegistrate = JSON.parse(localStorage.getItem('user'));
 
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [isLogin, setisLogin] = React.useState(isUserRegistrate);
@@ -89,7 +90,7 @@ export default function MenuAppBar(props) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <img  className='imageTitle' src="/messages.png" alt="" />
           </Typography>
-          {props.alertError.length > 0 &&
+          {/* {props.alertError.length > 0 &&
           <div className='boxForErrorInChat'>
            
             <Alert severity="error" sx={{ background: "rgb(55, 23, 23)", color:"white", letterSpacing:"1.4px", fontSize:"10px", width:"100%"  }}>
@@ -98,7 +99,7 @@ export default function MenuAppBar(props) {
                     <strong>check it out!</strong>
             </Alert>
           </div>
-          }
+          } */}
 
         {props.registraionIdentificator ?
             <Link  className="linkRegistration"  to = "/">
