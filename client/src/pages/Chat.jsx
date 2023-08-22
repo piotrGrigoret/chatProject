@@ -5,6 +5,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import moment from 'moment';
 import url from "../constants";
 
+
 // import io from 'socket.io-client';
 // const socket = io('http://localhost:5000');
 
@@ -17,6 +18,9 @@ import ResponsiveDrawer from '../components/ResponsiveDrawer';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from '@mui/material/IconButton';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
 
 export default class Chat extends Component {
     isUserRegistrate = JSON.parse(localStorage.getItem('user'));
@@ -52,6 +56,7 @@ export default class Chat extends Component {
             changeOpeningOfEmoji : false,
             chooseEmoji: null,
             displayAllElOnSmallEcran: true,
+            alertError: "",
         }
     }
     
@@ -64,8 +69,9 @@ export default class Chat extends Component {
         const chatMessages = response.data;
         await this.setState({ chatMessages });
         
-        
-        this.goToChats();
+        if(window.innerWidth < 1148){
+            this.goToChats();
+        }
         
         
     }
@@ -121,45 +127,55 @@ export default class Chat extends Component {
         }
       }
     sendMesageHandler = async() =>{
-        if(this.state.forArea.length > 0){
-            this.setState({changeOpeningOfEmoji: false});
+        // if(this.state.forArea.length > 300 || this.state.forArea.length <= 0 ){
+        //     this.setState({alertError: "The message can contain more than 0 and less than 300 characters."});
+        // }else{
+            if(this.state.forArea.length > 0 && this.state.forArea.length < 300){
+                this.setState({alertError: ""});
+              
+                this.setState({changeOpeningOfEmoji: false});
 
-            const copyChatMesasges = [...this.state.chatMessages, this.state.message];
-            const copyMessage = {...this.state.message};
-            // console.log(copyChatMesasges);
-            this.setState({
-                message: this.isUserRegistrate ? 
-                {
-                    text: "",
-                    date: new Date(),
-                    nickname: this.isUserRegistrate.nickname,
-                    image: this.isUserRegistrate.image,
-                    userID: this.isUserRegistrate._id,
-                    chatID: this.state.chat._id
-    
-                }
-                :
-                {
-                    text: "",
-                    date: new Date(),
-                    nickname: "Anonimous",
-                    image: "/anonim4.jpg",
-                    userID: "Anonim",
-                    chatID: this.state.chat._id
-                }
-            });
-            this.setState({forArea: ""});
-            // console.log(copyMessage);
-            this.ResponsiveDrawerRef.current.updateSortChatList();
+                const copyChatMesasges = [...this.state.chatMessages, this.state.message];
+                const copyMessage = {...this.state.message};
+                // console.log(copyChatMesasges);
+                this.setState({
+                    message: this.isUserRegistrate ? 
+                    {
+                        text: "",
+                        date: new Date(),
+                        nickname: this.isUserRegistrate.nickname,
+                        image: this.isUserRegistrate.image,
+                        userID: this.isUserRegistrate._id,
+                        chatID: this.state.chat._id
+        
+                    }
+                    :
+                    {
+                        text: "",
+                        date: new Date(),
+                        nickname: "Anonimous",
+                        image: "/anonim4.jpg",
+                        userID: "Anonim",
+                        chatID: this.state.chat._id
+                    }
+                });
+                this.setState({forArea: ""});
+                this.ResponsiveDrawerRef.current.updateSortChatList();
 
-            await this.props.socket.emit("send_message", copyMessage);
-            await axios.post(url + "/chat/addMesage", copyMessage); 
-            
+                await this.props.socket.emit("send_message", copyMessage);
+                await axios.post(url + "/chat/addMesage", copyMessage); 
+            }else{
+                this.setState({alertError: "The message can contain more than 0 and less than 300 characters."});
+                setTimeout(this.autoCleanErrorMessage, 4000);
+            }
 
-        }
+        // }
 
     }
-
+    autoCleanErrorMessage = () => {
+        this.setState({alertError: ""});
+        
+      };
 
     openEmojiHandler = () =>{
         if(this.state.changeOpeningOfEmoji == false){
@@ -170,12 +186,14 @@ export default class Chat extends Component {
     }
   
     goToChats = () =>{
+     
         if(this.state.displayAllElOnSmallEcran){
             this.setState({displayAllElOnSmallEcran: false});
         }else{
             this.setState({displayAllElOnSmallEcran: true});
         }
         this.ResponsiveDrawerRef.current.goToChatsMenuOnSmallEcrans();
+    
     }
     render() {
         return (
@@ -188,7 +206,9 @@ export default class Chat extends Component {
                         height: "100%",
                     }}
                 >
-                    <MenuAppBar/>
+                    <MenuAppBar
+                        alertError = {this.state.alertError}
+                    />
                     <ResponsiveDrawer
                         updateChat = {this.updateChat}
                         lastMessage = {this.state.message}
@@ -210,6 +230,12 @@ export default class Chat extends Component {
                     </div>
                     
                     <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
+                            {/* {this.state.alertError.length > 0 &&
+                            <Alert severity="error" sx={{ background: "rgb(55, 23, 23)", color:"white", letterSpacing:"1.4px", position:"fixed", }}>
+                                <AlertTitle>Error</AlertTitle>
+                                {this.state.alertError}  <strong>check it out!</strong>
+                            </Alert>
+                            } */}
                         {this.state.chat !== {} ? 
                         <ScrollToBottom className='message-container'>
                             { this.state.chatMessages.map((chatMessage, index) =>

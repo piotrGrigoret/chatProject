@@ -9,10 +9,18 @@ cursor: pointer;
     text-decoration: none;
     color: white;  
 }
+
 @media only screen and (min-width: 1025px) {
     .imageTitle{
         /* border: solid; */
         width: 180px;
+    
+    }
+    .boxForErrorInChat{
+        position:absolute;
+        margin-left:350px;
+        width: 600px;
+        transition: 2s;
     }
 }
 @media only screen and (max-width: 1025px) {
@@ -20,4 +28,12 @@ cursor: pointer;
 
         width: 20vh;
     }
+    .boxForErrorInChat{
+        position:absolute;
+        margin-left:7vh;
+        margin-top: 8vh;
+        font-size: 10px;
+        width: 150px;
+    }
+    
 }

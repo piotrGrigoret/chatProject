@@ -15,6 +15,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 export default function FormDialog(props) {
   const userData = JSON.parse(localStorage.getItem('user'));
@@ -26,8 +28,11 @@ export default function FormDialog(props) {
     privat: true,
     userID:  userData._id,
     lastMessageTime: props.lastMessage.data,
-    lastMessage: props.lastMessage.text
-  })
+    lastMessage: props.lastMessage.text,
+    
+  });
+  const [alertError, setAlertError] = React.useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -44,7 +49,8 @@ export default function FormDialog(props) {
   }
 
   const addChat = async() => {
-    if(newChat.name.length > 0){
+    if(newChat.name.length > 0 && newChat.name.length < 12){
+      setAlertError("");
       handleClose();
       try {
         const response =  await axios.post  (url + "/chat/createChat", newChat);
@@ -54,6 +60,8 @@ export default function FormDialog(props) {
       }catch (error) {
         console.log(error);    
       }
+    }else{
+      setAlertError("The name must contain from 0 to 12 characters.");
     }
   }
 
@@ -68,6 +76,12 @@ export default function FormDialog(props) {
         open={open} 
         onClose={handleClose}
       >
+        {alertError.length > 0 &&
+          <Alert severity="error" sx={{ background: "rgb(55, 23, 23)", color:"white", letterSpacing:"1.4px" }}>
+              <AlertTitle>Error</AlertTitle>
+                  {alertError}  <strong>check it out!</strong>
+          </Alert>
+        }
         <DialogTitle sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>Create a chat</DialogTitle>
         <DialogContent sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>
           <DialogContentText sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>

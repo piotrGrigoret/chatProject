@@ -130,6 +130,13 @@ export default class Registration extends Component {
 
         this.setState({alert: copyAlert});
       }
+      else if(this.state.user.nickname.length < 6 || this.state.user.nickname.length > 14 ){
+        const copyAlert = {...this.state.alert};
+        copyAlert.error = "Nickname must not be less than 6 and more than 14 characters";
+        copyAlert.success = "";
+
+        this.setState({alert: copyAlert});
+      }
       else{
         const copyAlert = {...this.state.alert};
         copyAlert.error = "";
