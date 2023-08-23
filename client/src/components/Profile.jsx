@@ -69,9 +69,11 @@ export default function Profile() {
           </DialogTitle>
         
           <DialogContent className='boxProfile' sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}} >
+            
             <div className='imgProfile'><img  src={userData.image} alt="" /><div>Change Foto</div></div>
             <div className='userDATA'>
               <div className='text'>Nickname:</div>
+              <div className='inputBox'>
               <TextField 
               
                     fullWidth
@@ -102,9 +104,13 @@ export default function Profile() {
                       }
                   />
                   <ManageHistoryIcon onClick={changeNicknameAccess} className='changePassword' sx={{mt:"20px", cursor: "pointer"}}/>
+
+                  </div>
             </div>    
-            <div className='userDATA'> 
+            < div className='userDATA'> 
                 <div className='text'>Password:</div>
+              <div className='inputBox'>
+
                 <TextField 
               
               fullWidth
@@ -135,18 +141,18 @@ export default function Profile() {
                 }
             />
             <ManageHistoryIcon onClick={changePaswordAccess} className='changePassword' sx={{mt:"20px", cursor: "pointer"}}/>
-
+              </div>
             </div>      
             <div className='userDATA'> 
-                <div >Login:</div>
+                <div  className='text1'>Login:</div>
                 {userData.login}
             </div>          
             <div className='userDATA'> 
-                <div >Registration:</div>
+                <div className='text1'>Registration:</div>
                 {moment(userData.date).format('YYYY D MMMM')}
             </div>
             <div className='userDATA'> 
-                <div >_id:</div>
+                <div className='text1'>_id:</div>
                 {userData._id}
             </div>
           </DialogContent>

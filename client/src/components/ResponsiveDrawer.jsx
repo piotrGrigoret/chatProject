@@ -14,6 +14,7 @@ import FormDialog from './FormDialog';
 
 export default class ResponsiveDrawer extends Component {
   userData = JSON.parse(localStorage.getItem('user'));
+  currentChat = JSON.parse(localStorage.getItem('chat'));
  
   constructor(props){
     super(props);
@@ -21,15 +22,17 @@ export default class ResponsiveDrawer extends Component {
         isLogin: this.userData,
         chatsList: this.props.chatsList,
         displayMenuChats: "chatsBox",
-
+         
       }
   }
 
   updateChatsList = async(newList) => {
+      
       await this.setState({ chatsList: newList.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime)) });
   }
  
-  updateSortChatList = () => {
+  updateSortChatList = (lasMsg) => {
+    // console.log(lasMsg);
     const chatLocalStorage = JSON.parse(localStorage.getItem('chat'));
     let firstChat = {};
     let newSortChatList = this.state.chatsList.filter((newChatList) => {
@@ -39,14 +42,16 @@ export default class ResponsiveDrawer extends Component {
             firstChat = newChatList
         }
     });
-    const newSortChatLista = [firstChat, ...newSortChatList];
-    this.setState({chatsList: [firstChat, ...newSortChatList]}); 
-    // console.log(chatLocalStorage2);
-  
+    // const newSortChatLista = [firstChat, ...newSortChatList];
+    firstChat.lastMessage = lasMsg.text;
+    firstChat.lastMessageTime = new Date();
+    this.setState({chatsList: [firstChat, ...newSortChatList]});
+
   }
 
 async componentDidMount(){
-  try {
+  console.log(this.currentChat);
+   try{
       if(this.props.chatsList[0]){
         this.setState({chatsList: this.props.chatsList});
       }else{
@@ -59,8 +64,8 @@ async componentDidMount(){
     } catch (error) {
       console.log(error);    
     } 
-      
-  }
+  
+}
 
   
   goToChatsMenuOnSmallEcrans = () =>{
@@ -73,7 +78,9 @@ async componentDidMount(){
       }
 
   }
+  exampleFunc = () =>{
 
+  }
   render() {
     return (
       <div className={this.state.displayMenuChats} >
@@ -90,12 +97,13 @@ async componentDidMount(){
               <FormDialog updateChatsList={this.updateChatsList} chatsList={this.state.chatsList} lastMessage = {this.props.lastMessage}  />
             }
               {this.state.isLogin ?
-                <div className='hiddenMenuBoxMessages' >
-                  {this.state.chatsList.map((chat) =>(                       
-                      <div className='hiddenMenuBoxMessage' key={chat._id} onClick={() =>this.props.updateChat(chat)}>
+                <div className={'hiddenMenuBoxMessages'} >
+                  {this.state.chatsList.map((chat) =>(                        
+                      <div className={ chat._id == this.currentChat._id ? 'hiddenMenuBoxMessageChoosed' : 'hiddenMenuBoxMessage'} key={chat._id} onClick={() =>this.props.updateChat(chat)}>
                           <div className='boxImageMessage'><img  src={chat.image} alt="" /></div>
                           <div className='chatInMenuTitle'>{chat.name}</div>
-                          <div className='timeLastMessageInChat'>{chat.lastMessageTime.length > 0 &&  moment(chat.lastMessageTime).format('HH:mm')}</div>
+                          {/* <div className='timeLastMessageInChat'>{chat.lastMessageTime.length > 0 &&  moment(chat.lastMessageTime).format('HH:mm')}</div> */}
+                          <div className='timeLastMessageInChat'>{moment(chat.lastMessageTime).format('HH:mm')}</div>
                           <div className='lastMessageInChat'>{chat.lastMessage}</div>
                       </div>                   
                   ))} 

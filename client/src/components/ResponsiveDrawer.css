@@ -106,6 +106,17 @@
             grid-template-columns: 35% auto 15%;
             grid-template-rows: 15% 45% auto 8%  ;
          }   
+        .hiddenMenuBoxMessageChoosed{
+            border-radius: 8px;
+            height: 90px;
+            width: 100%;
+            cursor: pointer;
+            background-color: rgb(48, 48, 81);
+            transition: 0.4s;
+            display: grid;
+            grid-template-columns: 35% auto 15%;
+            grid-template-rows: 15% 45% auto 8%  ;
+        }
          .hiddenMenuBoxMessage:hover{
             border-radius: 8px;
 
@@ -170,7 +181,17 @@
             display: grid;
             grid-template-columns: 18% auto 15%;
             grid-template-rows: 15% 45% auto 8%  ;
-         }   
+         }
+        .hiddenMenuBoxMessageChoosed{
+            height: 90px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.4s;
+            display: grid;
+            grid-template-columns: 18% auto 15%;
+            background-color: rgb(48, 48, 81);
+            grid-template-rows: 15% 45% auto 8%  ;
+         }
          .hiddenMenuBoxMessage:hover{
             background: rgb(58, 58, 76);
             
@@ -220,7 +241,20 @@
             display: grid;
             grid-template-columns: 25% auto 14%;
             grid-template-rows: 15% 40% auto 18%;
-        }   
+        }
+         
+        .hiddenMenuBoxMessageChoosed{
+            border-radius: 0.5vh;
+            height: 90px;
+            width: 100%;
+            cursor: pointer;
+            /* border: solid; */
+            transition: 0.4s;
+            display: grid;
+            background-color: rgb(48, 48, 81);
+            grid-template-columns: 25% auto 14%;
+            grid-template-rows: 15% 40% auto 18%;
+        }
         .hiddenMenuBoxMessage:hover{
             background: rgb(58, 58, 76);
             

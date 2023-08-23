@@ -61,7 +61,7 @@ export default class Chat extends Component {
     }
     
     updateChat = async (newChat) => {
-        
+        // this.state.chatsList.map((chat) => chat._id == newChat._id ? )
         localStorage.setItem('chat', JSON.stringify(newChat));
         await this.setState({ chat: newChat });
         
@@ -72,14 +72,14 @@ export default class Chat extends Component {
         if(window.innerWidth < 1148){
             this.goToChats();
         }
-        
+        window.location.reload();
+
         
     }
      
 
     async componentDidMount (){
         try {
-            
             const responseChatList = await axios.post(url + "/chat/getChats");
             await this.setState({chatsList: responseChatList.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
 
@@ -127,9 +127,7 @@ export default class Chat extends Component {
         }
       }
     sendMesageHandler = async() =>{
-        // if(this.state.forArea.length > 300 || this.state.forArea.length <= 0 ){
-        //     this.setState({alertError: "The message can contain more than 0 and less than 300 characters."});
-        // }else{
+        
             if(this.state.forArea.length > 0 && this.state.forArea.length < 300){
                 this.setState({alertError: ""});
               
@@ -160,7 +158,7 @@ export default class Chat extends Component {
                     }
                 });
                 this.setState({forArea: ""});
-                this.ResponsiveDrawerRef.current.updateSortChatList();
+                this.ResponsiveDrawerRef.current.updateSortChatList(copyMessage);
 
                 await this.props.socket.emit("send_message", copyMessage);
                 await axios.post(url + "/chat/addMesage", copyMessage); 
@@ -169,7 +167,6 @@ export default class Chat extends Component {
                 setTimeout(this.autoCleanErrorMessage, 4000);
             }
 
-        // }
 
     }
     autoCleanErrorMessage = () => {
@@ -214,6 +211,7 @@ export default class Chat extends Component {
                         lastMessage = {this.state.message}
                         chatsList = {this.state.chatsList}
                         ref={this.ResponsiveDrawerRef}
+                        classNameForSelectedChat = {this.state.classNameForSelectedChat}
                     />
                     <div className='titleChat'>
                         <div className='arrowBox'>
