@@ -76,28 +76,28 @@ export default class Registration extends Component {
     userCopy.login = event.target.value;
     this.setState({user: userCopy});       
 
-    // console.log(this.state.user);
+    console.log(this.state.user);
 
   }
   completeNickNameHandler = (event) =>{
     const userCopy  = {...this.state.user};
     userCopy.nickname = event.target.value;
     this.setState({user: userCopy});       
-    // console.log(this.state.user);
+    console.log(this.state.user);
 
   }
   completePasswordHandler = (event) =>{
     const userCopy  = {...this.state.user};
     userCopy.password = event.target.value;
     this.setState({user: userCopy});       
-    // console.log(this.state.user.password);
+    console.log(this.state.user.password);
 
   }
   completePasswordChekHandler = (event) =>{
     // const userCopy  = {...this.state.user};
     // userCopy.password = event.target.value;
     this.setState({confirmPassword: event.target.value});       
-    // console.log(this.state.confirmPassword);
+    console.log(this.state.confirmPassword);
 
   }
   // **********************************

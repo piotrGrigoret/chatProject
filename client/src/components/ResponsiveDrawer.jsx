@@ -50,7 +50,7 @@ export default class ResponsiveDrawer extends Component {
   }
 
 async componentDidMount(){
-  console.log(this.currentChat);
+  // console.log(this.currentChat);
    try{
       if(this.props.chatsList[0]){
         this.setState({chatsList: this.props.chatsList});

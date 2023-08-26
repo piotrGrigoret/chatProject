@@ -61,6 +61,7 @@ html body {
     
 }
 .imageUserMessage{
+    
     width: 5vh;
     height: 5vh;
     margin-right: 0.2vw;
@@ -143,8 +144,6 @@ html body {
     -moz-user-select: none;
     -ms-user-select: none;
 }
-
-
 
 /* стили для маленьких экранов, например, мобильных телефонов */
 @media only screen and (max-width: 600px) {
@@ -297,9 +296,9 @@ html body {
 }
 .imageUserMessageOwn img{
     border-radius: 2vw;
-    max-width: 100%;
+    width: 100%;
     border-radius: 100%;
-    height: auto;
+    height: 100%;
 }
 .otherOwn {
     display: flex;

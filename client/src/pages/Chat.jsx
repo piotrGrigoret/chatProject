@@ -96,7 +96,6 @@ export default class Chat extends Component {
                 });
                 this.setState({chatMessages:  [...this.state.chatMessages, data]});        
             });
-
         } catch (error) {
             console.log(error);
           }
