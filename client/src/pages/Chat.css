@@ -186,6 +186,10 @@ html body {
     .msg .user{
         font-size: 18px;
       }
+      .msg .user:hover{
+        cursor: pointer;
+        color: rgb(108, 68, 68);
+    }
       .msg .time {
         opacity: 0.5;
         float: right;
@@ -242,6 +246,10 @@ html body {
           .msg .user{
               font-size: 18px;
             }
+            .msg .user:hover{
+                cursor: pointer;
+                color: rgb(108, 68, 68);
+            }
             .msg .time {
                 opacity: 0.5;
                 float: right;
@@ -261,7 +269,14 @@ html body {
     }
     .msg .user{
         font-size: 20px;
+        cursor: pointer;
+        transition: 0.2s;
       }
+      .msg .user:hover{
+        font-size: 20px;
+        cursor: pointer;
+        color: rgb(108, 68, 68);
+    }
     .msg p {
       font-size: 17px;
     }
@@ -305,11 +320,11 @@ html body {
     justify-content: flex-end;
 }
 .otherOwn .msgOwn {
-
+    
     border-top-left-radius: 0px;
     box-shadow: -1px 2px 0px rgb(44, 43, 57);
 } 
- 
+
   
 .otherOwn:after {
     content: "";
@@ -395,9 +410,13 @@ html body {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
+        transition: 0.2s;
+        cursor: pointer;
     }
 
-      
+    .msgOwn .userOwn:hover {
+        color: #71927d;
+    }
         .msgOwn p {
             font-weight: 500;
             /* margin: 0 0 0.02vw 0; */
@@ -468,6 +487,12 @@ html body {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .msgOwn .userOwn:hover {
+        color: #71927d;
     }
     .msgOwn .time {
         margin-top: 1px;
@@ -500,8 +525,13 @@ html body {
         transition: all .2s ease;
         font-weight: 900;
 
+        transition: 0.2s;
+        cursor: pointer;
     }
-  
+
+    .msgOwn .userOwn:hover {
+        color: #71927d;
+    }
       .textFieldContainer{
         width: 70%;
         float: right;

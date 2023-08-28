@@ -5,16 +5,18 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import moment from 'moment';
 import url from "../constants";
 
+import ProfilDate from '../components/ProfilDate';
+import MenuAppBar from '../components/MenuAppBar';
+import ResponsiveDrawer from '../components/ResponsiveDrawer';
+
 
 // import io from 'socket.io-client';
 // const socket = io('http://localhost:5000');
 
 import EmojiPicker from 'emoji-picker-react';
-import MenuAppBar from '../components/MenuAppBar'
-import {Container, Box, TextField, containerClasses} from "@mui/material"
+import {Container, Box, TextField, containerClasses} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 // import ResponsiveDrawer from './components/ResponsiveDrawer';
-import ResponsiveDrawer from '../components/ResponsiveDrawer';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from '@mui/material/IconButton';
@@ -27,6 +29,9 @@ export default class Chat extends Component {
     chatLocalStorage = JSON.parse(localStorage.getItem('chat'));
     ResponsiveDrawerRef = React.createRef();
     
+
+
+
     constructor(props){
         super(props);
         this.state = {
@@ -57,6 +62,8 @@ export default class Chat extends Component {
             chooseEmoji: null,
             displayAllElOnSmallEcran: true,
             alertError: "",
+            openProfile: false,
+            profileContent: {}
         }
     }
     
@@ -191,6 +198,34 @@ export default class Chat extends Component {
         this.ResponsiveDrawerRef.current.goToChatsMenuOnSmallEcrans();
     
     }
+
+    // openProfileCard = () => {
+    //     console.log(this.state.openProfileCard);
+
+    //     this.setState({openProfileCard: true});
+    // }
+
+    // handleCloseProfileCard = () => {
+    //     console.log(this.state.openProfileCard);
+
+    //     this.setState({openProfileCard: false});
+
+    // }
+    setCloseProfile = () => {
+        this.setState({openProfile: false}); 
+    }
+    setOpenProfile = async(chatMessage) => {
+        this.setState({openProfile: true});
+
+        try {
+          const response = await axios.post(url + "/auth/getUser", {chatMessage}); 
+          this.setState({profileContent: response.data.user});
+        } catch (error) {
+            console.log(error);
+        }
+        // this.set
+    }
+
     render() {
         return (
             <div className='container' >
@@ -215,7 +250,7 @@ export default class Chat extends Component {
                     <div className='titleChat'>
                         <div className='arrowBox'>
                         <IconButton
-                        onClick = {this.goToChats}
+                            onClick = {this.goToChats}
                             color="inherit"
                         > 
                             <ArrowBackIcon  />
@@ -225,6 +260,11 @@ export default class Chat extends Component {
                             <div className={this.state.displayAllElOnSmallEcran == true ? 'nameOfChat' : 'nameOfChatDisableOnMobile'}><div>{this.state.chat.name}</div></div>
                         }
                     </div>
+                    <ProfilDate
+                        openProfile = {this.state.openProfile}
+                        setCloseProfile = {this.setCloseProfile}
+                        profileContent = {this.state.profileContent}
+                    />
                     
                     <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
                             {/* {this.state.alertError.length > 0 &&
@@ -237,11 +277,10 @@ export default class Chat extends Component {
                         <ScrollToBottom className='message-container'>
                             { this.state.chatMessages.map((chatMessage, index) =>
                                 this.isUserRegistrate._id == chatMessage.userID ?
-
-                                        <div className='boxMessageOwn' key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
+                                        <div className='boxMessageOwn'   key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
                                             <li className="otherOwn"  >
                                                 <div className= "msgOwn">
-                                                    <div className="userOwn">{chatMessage.nickname}</div>
+                                                    <div className="userOwn" onClick = {() =>this.setOpenProfile(chatMessage)} >{chatMessage.nickname} </div>
                                                     <p>{chatMessage.text}</p>
                                                     <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
                                             
@@ -250,11 +289,11 @@ export default class Chat extends Component {
                                             <div className='imageUserMessageOwn'><img  src={chatMessage.image}  alt="/ispanka.jpg" /></div>
                                         </div>
                                         :
-                                        <div className='boxMessage' key = {chatMessage._id ? chatMessage._id : index}>
+                                        <div className='boxMessage'  key = {chatMessage._id ? chatMessage._id : index}>
                                         <div className='imageUserMessage'><img  src={chatMessage.image}  alt="/dev.jpg" /></div>
                                         <li className="other"  >
                                             <div className="msg" style={{background: "#263137"}}>
-                                                <div className="user">{chatMessage.nickname}</div>
+                                                <div className="user" onClick = {() =>this.setOpenProfile(chatMessage)}>{chatMessage.nickname}</div>
                                                 <p>{chatMessage.text}</p>
                                                 <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
                                             </div>

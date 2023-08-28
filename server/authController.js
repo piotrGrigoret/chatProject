@@ -88,6 +88,18 @@ class authController{
         }
     }
 
+    async getUser(req, res){
+        try {
+            const {chatMessage} = req.body;
+            const _id = chatMessage.userID;
+            const user = await User.findById(_id);
+            console.log(user.nickname + "user find success");
+            return res.json({user});
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     async changefoto(req, res){
         try {

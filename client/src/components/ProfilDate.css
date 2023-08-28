@@ -1,0 +1,116 @@
+@media only screen and (max-width: 600px) {
+
+    .profileDateBox{
+        /* border: solid; */
+    }
+    .description{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .imgProfileDate{
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        border: solid rgb(40, 39, 39);
+        -webkit-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+    }
+
+   
+    .imgProfileDate img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+    .userDATADate{
+        display: grid;
+        grid-template-columns:  auto;
+        margin-bottom: 10px;
+
+    }
+    .text1Date{
+
+    }
+
+
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .profileDateBox{
+        /* border: solid; */
+    }
+    .description{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .imgProfileDate{
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        border: solid rgb(40, 39, 39);
+        -webkit-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+    }
+
+   
+    .imgProfileDate img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+    .userDATADate{
+        display: grid;
+        grid-template-columns: 30% auto;
+        margin-bottom: 10px;
+
+    }
+    .text1Date{
+
+    }
+
+}
+
+@media only screen and (min-width: 1025px) {
+
+    .profileDateBox{
+        
+    }
+    .description{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .imgProfileDate{
+        width: 190px;
+        height: 190px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border-radius: 150px;
+        border: solid rgb(40, 39, 39);
+        -webkit-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+    }
+
+   
+    .imgProfileDate img{
+        border-radius: 150px;
+        width: 100%;
+        height: 100%;
+    }
+    .userDATADate{
+        display: grid;
+        grid-template-columns: 30% auto;
+        margin-bottom: 10px;
+
+    }
+    .text1Date{
+
+    }
+    
+}

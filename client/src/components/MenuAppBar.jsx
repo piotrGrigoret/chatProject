@@ -88,7 +88,7 @@ export default function MenuAppBar(props) {
 
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <img  className='imageTitle' src="/messages.png" alt="" />
+            <img  className='imageTitle' src="/pulsetalk.png" alt="" />
           </Typography>
           {props.alertError.length > 0 &&
           <div className='boxForErrorInChat'>

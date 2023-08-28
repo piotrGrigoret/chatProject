@@ -78,9 +78,7 @@ async componentDidMount(){
       }
 
   }
-  exampleFunc = () =>{
-
-  }
+  
   render() {
     return (
       <div className={this.state.displayMenuChats} >

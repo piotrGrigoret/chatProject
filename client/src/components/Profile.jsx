@@ -184,6 +184,7 @@ export default function Profile() {
         open={open} 
         onClose={handleClose}
         // fullWidth
+        
         sx={{height:"600px"}}
       >
           {alert.error.length > 0 &&
