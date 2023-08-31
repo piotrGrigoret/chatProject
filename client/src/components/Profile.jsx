@@ -106,7 +106,7 @@ export default function Profile() {
           const response = await axios.post(url + "/auth/changePassword", {password, userData});
           localStorage.setItem('user', JSON.stringify(response.data.changeUser));
           window.location.reload();
-        } catch (error) {
+        } catch(error) {
           console.log(error);
         }  
       }else{
@@ -120,12 +120,50 @@ export default function Profile() {
             success: "",
             error: "",
           });
-        }, 5000)
+        }, 5000);
       }
     }
   }
 
+  const [status, setStatus] = React.useState("");
+  const [changeStatus, setChangeStatus] = React.useState(true);
+  
+  const changeStatusHandler = async(event) => {
+    setStatus(event.target.value);
+  } 
 
+  const changeStatusAccess = async() =>{
+
+    if(changeStatus == true){
+      setChangeStatus(false);
+    }else{
+      if(status.length > 0 && status.length < 12){ 
+        setChangeStatus(true);
+        try {
+          const response = await axios.post(url + "/auth/changeStatus", {status, userData});
+          localStorage.setItem('user', JSON.stringify(response.data.changeUser));
+          console.log(response.data.changeUser);
+          window.location.reload();
+        } catch (error) {
+          console.log(error);
+        }
+      }else{
+        const copyAlert = {
+          success: "",
+          error: "Status must not be less than 1 and more than 12 characters",
+        }
+        setAlert(copyAlert);
+        setTimeout(() => {
+          setAlert({
+            success: "",
+            error: "",
+          });
+        }, 5000);
+      }
+    
+    
+    }
+  }
    //change foto platform
    const [fotoPlatform, setFotoPlatform] = React.useState(false);
    const changeFotoHandler = async() => {
@@ -290,10 +328,59 @@ export default function Profile() {
             }
             </div>
             </div>      
+
+            < div className='userDATA'> 
+                <div className='text'>Status</div>
+                  <div className='inputBox'>
+
+                    <TextField 
+                    onChange={changeStatusHandler}
+                    fullWidth
+                    InputProps={{
+                      style: { color: 'rgb(189, 185, 177)'},
+
+                    }}
+                    InputLabelProps={{
+                      style: { color: 'rgb(189, 185, 177)' }, 
+                    }}
+                    disabled={changeStatus}
+                    id="inputStatus" 
+                    label="Change Status" 
+                    variant="standard"  
+                    sx={{
+                      '& :-webkit-autofill': {
+                          WebkitBoxShadow: '0 0 0 1000px rgba(40, 40, 53) inset',
+                          WebkitTextFillColor: 'rgb(255,255,255)'
+                      },
+                      '& :-webkit-autofill:focus': {
+                        WebkitBoxShadow: '0 0 0 1000px rgba(40, 40, 53) inset',
+                        WebkitTextFillColor: 'rgb(255,255,255)'
+                      },
+                      '& :-webkit-autofill:hover': {
+                        WebkitBoxShadow: '0 0 0 1000px rgba(40, 40, 53) inset',
+                        WebkitTextFillColor: 'rgb(255,255,255)'
+                      }} 
+                    }
+                />
+                {changeStatus ?
+                  <ManageHistoryIcon onClick={changeStatusAccess} className='changePassword' sx={{mt:"20px", cursor: "pointer"}}/>
+                  :
+                  <CheckIcon onClick={changeStatusAccess} className='changePassword' sx={{mt:"20px", cursor: "pointer"}}/>
+                }
+                </div>
+            </div>   
             <div className='userDATA'> 
                 <div  className='text1'>Login:</div>
                 {userData.login}
-            </div>          
+            </div>     
+            <div className='userDATA'> 
+                <div  className='text1'>Nickname:</div>
+                {userData.nickname}
+            </div>     
+            <div className='userDATA'> 
+                <div  className='text1'>Status:</div>
+                {userData.status}
+            </div> 
             <div className='userDATA'> 
                 <div className='text1'>Registration:</div>
                 {moment(userData.date).format('YYYY D MMMM')}
@@ -302,6 +389,7 @@ export default function Profile() {
                 <div className='text1'>_id:</div>
                 {userData._id}
             </div>
+
           </DialogContent>
           <DialogActions sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>
             <Button variant='standart' onClick={handleClose}>Close</Button>

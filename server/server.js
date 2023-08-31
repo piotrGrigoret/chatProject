@@ -10,7 +10,7 @@ const http = require('http');
 const chatRouter = require('./chatRouter');
 const chatAuth  = require('./authRouter');
 // const   = require('./authRouter');
-
+const User = require("./models/User");
 const PORT = process.env.PORT;
 const app = express();
 app.use(cors());
@@ -58,8 +58,19 @@ io.on("connection", (socket) => {
 const start = async() =>{
 
     try {
-        await mongoose.connect("mongodb+srv://myLocalEnvironment:qeJu0Y16qXr3W1hU@cluster0.wnvgx3j.mongodb.net/chat-project?retryWrites=true&w=majority")
-
+        await mongoose.connect("mongodb+srv://myLocalEnvironment:qeJu0Y16qXr3W1hU@cluster0.wnvgx3j.mongodb.net/chat-project?retryWrites=true&w=majority");
+        // await mongoose.connect('mongodb+srv://myLocalEnvironment:qeJu0Y16qXr3W1hU@cluster0.wnvgx3j.mongodb.net/chat-project?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+        // .then(async () => {
+        //     console.log('Connected to database');
+    
+        //     // Обновление всех записей
+        //     await User.updateMany({}, { $set: { status: "Memento Mori" } });
+    
+        //     console.log('Data migration completed');
+        //     mongoose.disconnect();
+        // })
+        // .catch(error => console.error('Error connecting to database:', error));
+        
         server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
                 
     } catch (error) {

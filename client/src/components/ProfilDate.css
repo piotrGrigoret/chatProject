@@ -26,13 +26,16 @@
         height: 100%;
     }
     .userDATADate{
+        /* border-bottom: solid; */
+        height: 60px;
         display: grid;
-        grid-template-columns:  auto;
-        margin-bottom: 10px;
+        grid-template-columns: auto;
+        margin-bottom: 20px;
 
     }
     .text1Date{
-
+        font-size: 20px;
+        margin-bottom: 5px;
     }
 
 

@@ -8,7 +8,7 @@ const User = new Schema({
     nickname :{type: String,  required: true },
     image:  {type: String, required:true},
     date:   {type: Date, default: Date.now},
-
+    status: {type:String, default: "Memento Mori"}
 });
 
 module.exports = model('User', User);

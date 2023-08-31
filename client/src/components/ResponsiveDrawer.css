@@ -39,27 +39,16 @@
     height: 100%;
 }
  
-    .hidden-menu .icon{
-        /* border: solid; */
-        opacity: 0.5;
-        width: 30px;
-        cursor: pointer;
-        margin-top: 7.5px;
-        margin-left:280px;        
-        transition: 0.4s;
-    }
-    .hidden-menu .icon:hover{
-        /* border: solid; */
-        opacity: 1;
-              
-    }
+
+   
     .recentActorsIcon{
         color: white;
     }
     
     .hiddenMenuBoxMessages{
         /* border: solid; */
-        width: 105%;
+        border-top: solid 2px rgb(35, 67, 174);
+        width: 106%;
         height: 90%; /* Set a specific height */
         margin-top: 20px;
         overflow: auto;
@@ -86,6 +75,7 @@
             cursor: pointer;
             margin-left:4px;        
             transition: 0.4s;
+            margin-top: 6px;
         }
         .chatsBox{
             display: none;
@@ -105,7 +95,8 @@
             display: grid;
             grid-template-columns: 35% auto 15%;
             grid-template-rows: 15% 45% auto 8%  ;
-         }   
+           
+        }   
         .hiddenMenuBoxMessageChoosed{
             border-radius: 8px;
             height: 90px;
@@ -125,12 +116,14 @@
          }
         .boxImageMessage{
             height: 70px;
+            width: 70px;
         
         }
         .boxImageMessage img{
             margin-left: 6px;
             margin-top: 14px;
             height: 70%; 
+            width: 70%; 
             border-radius: 100%;
         }
         .chatInMenuTitle{
@@ -153,11 +146,34 @@
             overflow:hidden;
             font-size: 11px;
         }
+        .chatsCreateBox{
+            display: grid;
+            grid-template-columns: 70% 20% auto;
+        }
+        .findButtonBox{
+            margin-left: 5px;
+            transition: 0.4s;
+            margin-top: 7.5px;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+        .findButtonBox:hover{
+            opacity: 1;
+                  
+        }
+        .imageNotFoundBox{
+            width: 200px;
+            /* border: solid; */
+            margin: 0 auto;
+            margin-top: 50%;
+        }
+        .imageNotFoundBox img{
+            width: 100%;
+        }
       }
 
       @media only screen and (min-width: 801px) and (max-width: 1148px) {
         .hidden-menu .icon{
-            /* border: solid; */
             opacity: 0.5;
             width: 40px;
             cursor: pointer;
@@ -198,12 +214,14 @@
          }
         .boxImageMessage{
             height: 70px;
+            width: 70px;
         
         }
         .boxImageMessage img{
             margin-left: 6px;
             margin-top: 14px;
-            height: 90%; 
+            height: 90%;
+            width: 90%; 
             border-radius: 100%;
         }
         .chatInMenuTitle{
@@ -223,6 +241,31 @@
             grid-row-start: 3;
             overflow:hidden;
             font-size: 13px;
+        }
+
+        .chatsCreateBox{
+            display: grid;
+            grid-template-columns: 70% 20% auto;
+        }
+        .findButtonBox{
+            margin-left: 5px;
+            transition: 0.4s;
+            margin-top: 7.5px;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+        .findButtonBox:hover{
+            opacity: 1;
+                  
+        }
+        .imageNotFoundBox{
+            width: 200px;
+            /* border: solid; */
+            margin: 0 auto;
+            margin-top: 50%;
+        }
+        .imageNotFoundBox img{
+            width: 100%;
         }
     }
         
@@ -261,11 +304,13 @@
         }
         .boxImageMessage{
             height: 70px;
+            width: 70px;
         }
         .boxImageMessage img{
             margin-left: 6px;
             margin-top: 15px;
             height: 90%;
+            width: 90%;
             border-radius: 100%;
         }
         .chatInMenuTitle{
@@ -286,6 +331,44 @@
             grid-row-start: 3;
         overflow:hidden;
         font-size: 13px;
+        }
+        .chatsCreateBox{
+            display: grid;
+            grid-template-columns: 70% 20% auto;
+        }
+        .findButtonBox{
+            margin-left: 5px;
+            transition: 0.4s;
+            margin-top: 7.5px;
+            cursor: pointer;
+            opacity: 0.4;
+        }
+        .findButtonBox:hover{
+            opacity: 1;
+                  
+        }
+        .hidden-menu .icon{
+            /* border: solid; */
+            opacity: 0.5;
+            width: 30px;
+            cursor: pointer;
+            margin-top: 7.5px;
+            /* margin-left:50px;         */
+            transition: 0.4s;
+        }
+        .hidden-menu .icon:hover{
+            /* border: solid; */
+            opacity: 1;
+                  
+        }
+        .imageNotFoundBox{
+            width: 200px;
+            /* border: solid; */
+            margin: 0 auto;
+            margin-top: 50%;
+        }
+        .imageNotFoundBox img{
+            width: 100%;
         }
 }
 

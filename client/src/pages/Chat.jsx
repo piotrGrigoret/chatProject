@@ -217,13 +217,22 @@ export default class Chat extends Component {
     setOpenProfile = async(chatMessage) => {
         this.setState({openProfile: true});
 
+        if(chatMessage.userID == 'Anonim'){
+            this.setState({profileContent:{ 
+                date: new Date(),
+                nickname: "Anonimous",
+                image: "/anonim4.jpg",
+                userID: "Anonim",
+                chatID: this.state.chat._id }});  
+        }
         try {
           const response = await axios.post(url + "/auth/getUser", {chatMessage}); 
+          
+          
           this.setState({profileContent: response.data.user});
         } catch (error) {
             console.log(error);
         }
-        // this.set
     }
 
     render() {

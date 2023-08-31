@@ -49,18 +49,18 @@ export default function ProfilDate(props) {
             },
         }}>
             <div className='profileDateBox'>
-            <div className='description'>Memento mori</div>
+            <div className='description'>{props.profileContent.status}</div>
 
             <div className='imgProfileDate'>          
                 <img  src={props.profileContent.image} alt="" />            
             </div>
             <div className='userDATADate'> 
-                    <div  className='text1'>_nickname:</div>
+                    <div  className='text1Date'>_Nickname:</div>
                     {props.profileContent.nickname}
             </div>          
 
             <div className='userDATADate'> 
-                <div className='text1'>_id:</div>
+                <div className='text1Date'>_Id:</div>
                 {props.profileContent._id}
             </div>
             </div>

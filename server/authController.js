@@ -70,7 +70,7 @@ class authController{
         try {
             const {password, userData} = req.body;
             const _id = userData._id;
-            console.log(password);
+            // console.log(password);
 
             const hashPassword = bcrypt.hashSync(password, 7);
             
@@ -87,7 +87,23 @@ class authController{
             console.log(error);
         }
     }
-
+    async changeStatus(req,res){
+        try {
+            const {status, userData} = req.body;
+            const _id = userData._id;
+            const newStatus = status;
+            await User.findByIdAndUpdate(
+                _id,
+                {status: newStatus}
+            )
+            const changeUser = await User.findById(_id);
+            console.log("status change success: \n");
+            return res.json({message: "Status save success", changeUser});
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async getUser(req, res){
         try {
             const {chatMessage} = req.body;
@@ -95,7 +111,7 @@ class authController{
             const user = await User.findById(_id);
             console.log(user.nickname + "user find success");
             return res.json({user});
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -129,5 +145,23 @@ class authController{
         }
     }
 
+    async findUser(req, res){
+        // for responsiveDrawer
+        try {
+            const {_id} = req.body;
+            // console.log(_id);
+            let result = await User.find();
+           
+
+            let response = result.filter((r) =>{
+                if(r._id.toString() !== _id ){
+                    return r;
+                }
+            });
+            return res.json({response});
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 module.exports = new authController();
