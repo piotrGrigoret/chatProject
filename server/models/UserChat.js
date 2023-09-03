@@ -3,8 +3,8 @@ const {Schema, model} = require('mongoose');
 
 const UserChat = new Schema({
 
-    userId:{type:String, required: true},
-    chatId:{type:String, required: true }
+    userID:{type:String, required: true},
+    chatID:{type:String, required: true }
 
 });
 

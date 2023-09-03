@@ -131,6 +131,14 @@
             grid-column-start: 2;
             grid-row-start: 2;
             font-size: 14px;
+            font-weight: 700;
+            display: grid;
+            grid-template-columns: 70% auto;
+        }
+        .chatInMenuTitle img{
+            margin-left: 10px;
+            width: 16px;
+            opacity: 0.8;
         }
         .timeLastMessageInChat{
             color:white;
@@ -228,6 +236,14 @@
             color:white;
             grid-column-start: 2;
             grid-row-start: 2;
+            font-weight: 700;
+            display: grid;
+            grid-template-columns: 60% auto;
+        }
+        .chatInMenuTitle img{
+            margin-left: 10px;
+            width: 26px;
+            opacity: 0.8;
         }
         .timeLastMessageInChat{
             color:white;
@@ -318,6 +334,13 @@
             grid-column-start: 2;
             grid-row-start: 2;
             font-weight: 700;
+            display: grid;
+            grid-template-columns: 60% auto;
+        }
+        .chatInMenuTitle img{
+            margin-left: 10px;
+            width: 26px;
+            opacity: 0.8;
         }
         .timeLastMessageInChat{
             color:white;

@@ -8,7 +8,8 @@ import url from "../constants";
 import ProfilDate from '../components/ProfilDate';
 import MenuAppBar from '../components/MenuAppBar';
 import ResponsiveDrawer from '../components/ResponsiveDrawer';
-
+import ChatDate from '../components/ChatDate';
+import AddUserPanel from '../components/AddUserPanel';
 
 // import io from 'socket.io-client';
 // const socket = io('http://localhost:5000');
@@ -63,7 +64,11 @@ export default class Chat extends Component {
             displayAllElOnSmallEcran: true,
             alertError: "",
             openProfile: false,
-            profileContent: {}
+            profileContent: {},
+            openChatCard: false,
+            chatCardContent:{},
+            openAddUserPanel:false,
+            addUserPanelContent:{}
         }
     }
     
@@ -134,7 +139,7 @@ export default class Chat extends Component {
       }
     sendMesageHandler = async() =>{
         
-            if(this.state.forArea.length > 0 && this.state.forArea.length < 300){
+            if(this.state.forArea.length > 0 && this.state.forArea.length < 200){
                 this.setState({alertError: ""});
               
                 this.setState({changeOpeningOfEmoji: false});
@@ -169,7 +174,7 @@ export default class Chat extends Component {
                 await this.props.socket.emit("send_message", copyMessage);
                 await axios.post(url + "/chat/addMesage", copyMessage); 
             }else{
-                this.setState({alertError: "The message can contain more than 0 and less than 300 characters."});
+                this.setState({alertError: "The message can contain more than 0 and less than 200 characters."});
                 setTimeout(this.autoCleanErrorMessage, 4000);
             }
 
@@ -216,7 +221,7 @@ export default class Chat extends Component {
     }
     setOpenProfile = async(chatMessage) => {
         this.setState({openProfile: true});
-
+        
         if(chatMessage.userID == 'Anonim'){
             this.setState({profileContent:{ 
                 date: new Date(),
@@ -224,15 +229,30 @@ export default class Chat extends Component {
                 image: "/anonim4.jpg",
                 userID: "Anonim",
                 chatID: this.state.chat._id }});  
+        }else{
+            try {
+                const response = await axios.post(url + "/auth/getUser", {chatMessage}); 
+            
+            
+                this.setState({profileContent: response.data.user});
+            } catch (error) {
+                console.log(error);
+            }
         }
-        try {
-          const response = await axios.post(url + "/auth/getUser", {chatMessage}); 
-          
-          
-          this.setState({profileContent: response.data.user});
-        } catch (error) {
-            console.log(error);
-        }
+    }
+    setCloseChatCard = () =>{
+        this.setState({openChatCard:false});
+    }
+    setOpenChatCard = async() =>{
+        this.setState({openChatCard:true});
+    }
+
+
+    setCloseAddUserPanel = () =>{
+        this.setState({openAddUserPanel:false});
+    }
+    setOpenAddUserPanel = async() =>{
+        this.setState({openAddUserPanel:true});
     }
 
     render() {
@@ -255,18 +275,22 @@ export default class Chat extends Component {
                         chatsList = {this.state.chatsList}
                         ref={this.ResponsiveDrawerRef}
                         classNameForSelectedChat = {this.state.classNameForSelectedChat}
+                        setOpenProfile  = {this.setOpenProfile}      
                     />
                     <div className='titleChat'>
                         <div className='arrowBox'>
-                        <IconButton
-                            onClick = {this.goToChats}
-                            color="inherit"
-                        > 
-                            <ArrowBackIcon  />
-                        </IconButton>
+                            <IconButton
+                                onClick = {this.goToChats}
+                                color="inherit"
+                            > 
+                                <ArrowBackIcon  />
+                            </IconButton>
                         </div>
                         {this.state.chat !== {} && 
-                            <div className={this.state.displayAllElOnSmallEcran == true ? 'nameOfChat' : 'nameOfChatDisableOnMobile'}><div>{this.state.chat.name}</div></div>
+                            <div onClick={this.setOpenChatCard} className={this.state.displayAllElOnSmallEcran == true ? 'nameOfChat' : 'nameOfChatDisableOnMobile'}>
+                                <div>{this.state.chat.name} <img src="./configuration.png" alt="" /> </div>
+                                
+                            </div>
                         }
                     </div>
                     <ProfilDate
@@ -274,14 +298,21 @@ export default class Chat extends Component {
                         setCloseProfile = {this.setCloseProfile}
                         profileContent = {this.state.profileContent}
                     />
-                    
+                    <ChatDate
+                        openChatCard = {this.state.openChatCard}
+                        setCloseChatCard = {this.setCloseChatCard}
+                        chatCardContent = {this.state.chatCardContent}
+                        openProfile = {this.state.openProfile}
+                        setOpenProfile = {this.setOpenProfile}
+                        setOpenAddUserPanel = {this.setOpenAddUserPanel}
+                    />
+                    <AddUserPanel
+                        openAddUserPanel = {this.state.openAddUserPanel}
+                         setCloseAddUserPanel = {this.setCloseAddUserPanel}
+                         setOpenAddUserPanel = {this.setOpenAddUserPanel}
+                    />
                     <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
-                            {/* {this.state.alertError.length > 0 &&
-                            <Alert severity="error" sx={{ background: "rgb(55, 23, 23)", color:"white", letterSpacing:"1.4px", position:"fixed", }}>
-                                <AlertTitle>Error</AlertTitle>
-                                {this.state.alertError}  <strong>check it out!</strong>
-                            </Alert>
-                            } */}
+                           
                         {this.state.chat !== {} ? 
                         <ScrollToBottom className='message-container'>
                             { this.state.chatMessages.map((chatMessage, index) =>
@@ -289,7 +320,7 @@ export default class Chat extends Component {
                                         <div className='boxMessageOwn'   key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
                                             <li className="otherOwn"  >
                                                 <div className= "msgOwn">
-                                                    <div className="userOwn" onClick = {() =>this.setOpenProfile(chatMessage)} >{chatMessage.nickname} </div>
+                                                    <div className="userOwn" onClick = {() =>this.setOpenProfile(chatMessage)} >{chatMessage.nickname} { this.chatLocalStorage.userID === chatMessage.userID  && <span className='adminIdnicator'>admin</span>} </div>
                                                     <p>{chatMessage.text}</p>
                                                     <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
                                             
@@ -302,7 +333,7 @@ export default class Chat extends Component {
                                         <div className='imageUserMessage'><img  src={chatMessage.image}  alt="/dev.jpg" /></div>
                                         <li className="other"  >
                                             <div className="msg" style={{background: "#263137"}}>
-                                                <div className="user" onClick = {() =>this.setOpenProfile(chatMessage)}>{chatMessage.nickname}</div>
+                                                <div className="user" onClick = {() =>this.setOpenProfile(chatMessage)}>{chatMessage.nickname} { this.chatLocalStorage.userID === chatMessage.userID  && <span className='adminIdnicator'>admin</span>}</div>
                                                 <p>{chatMessage.text}</p>
                                                 <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
                                             </div>

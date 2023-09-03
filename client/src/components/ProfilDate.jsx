@@ -13,7 +13,7 @@ export default function ProfilDate(props) {
 
   
     const handleClose = () => {
-        props.setCloseProfile();    
+      props.setCloseProfile();    
     };
 
   return (
@@ -24,8 +24,7 @@ export default function ProfilDate(props) {
             // onClose={handleClose}
             open={props.openProfile} 
             onClose={handleClose}
- 
- >
+        >
         <DialogTitle className='dialogTitle'  sx={{
           backgroundColor: "rgb(40, 40, 53)",
           color: "white",

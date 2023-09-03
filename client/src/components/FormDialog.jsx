@@ -61,7 +61,8 @@ export default function FormDialog(props) {
         console.log(error);    
       }
     }else{
-      setAlertError("The name must contain from 0 to 12 characters.");
+      setAlertError("The name must contain from 1 to 12 characters.");
+      
     }
   }
 

@@ -60,8 +60,9 @@ async componentDidMount(){
       if(this.props.chatsList[0]){
         this.setState({chatsList: this.props.chatsList});
       }else{
-        const response = await axios.post(url + "/chat/getChats");
+        const response = await axios.post(url + "/chat/getChats", this.userData);
         this.setState({chatsList: response.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
+        // console.log(response.data); 
       }
      
       // this.setState({chatsList: response.data});
@@ -137,9 +138,9 @@ async componentDidMount(){
                         <div className='imageNotFoundBox'><img src="./notFound.png" alt="" /> </div>
                       :
                       this.state.searchingUsers.map((user) =>(
-                      <div className='hiddenMenuBoxMessage' key={user._id}>
+                      <div className='hiddenMenuBoxMessage' key={user._id} onClick={() =>this.props.setOpenProfile(user)}>
                           <div className='boxImageMessage'><img  src={user.image} alt="" /></div>
-                          <div className='chatInMenuTitle'>{user.nickname}</div>
+                          <div className='chatInMenuTitle'  >{user.nickname}</div>
                       </div>               
                     ))
                       
@@ -150,7 +151,7 @@ async componentDidMount(){
                       {this.state.chatsList.map((chat) =>(                        
                           <div className={ chat._id == this.currentChat._id ? 'hiddenMenuBoxMessageChoosed' : 'hiddenMenuBoxMessage'} key={chat._id} onClick={() =>this.props.updateChat(chat)}>
                               <div className='boxImageMessage'><img  src={chat.image} alt="" /></div>
-                              <div className='chatInMenuTitle'>{chat.name}</div>
+                              <div className='chatInMenuTitle'> <>{chat.name}</> <img  src="./gruppa.png" alt="" /></div>
                               <div className='timeLastMessageInChat'>{moment(chat.lastMessageTime).format('HH:mm')}</div>
                               <div className='lastMessageInChat'>{chat.lastMessage}</div>
                           </div>                   

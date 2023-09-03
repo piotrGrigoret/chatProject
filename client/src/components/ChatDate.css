@@ -1,0 +1,116 @@
+.descriptionChat{
+    /* border: solid; */
+    text-align: center;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 90% auto;
+}
+.descriptionChatDisable{
+    /* border: solid; */
+    text-align: center;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns:  auto;
+}
+/* .nameOfChat{
+    grid-row-start: 1;
+    grid-column-end: 2;
+} */
+.changeFoto{
+    margin: 0 auto;
+    /* border: solid; */
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.changeFoto:hover{
+    color: rgb(11, 43, 170);
+}
+
+.titleUserList{
+}
+.fotoCont{
+    height: 240px;
+    margin-bottom: 20px;
+    /* border: solid; */
+}
+@media only screen and (max-width: 600px) {
+    .fotoCont{
+        height: 160px;
+        margin-bottom: 20px;
+        /* border: solid; */
+    }
+    .addUserImageBox img{
+        width: 30px;
+        transition: 0.5s;
+        cursor: pointer;
+    }    
+    .addUserImageBox img:hover{
+        width: 30px;
+        opacity: 0.4;
+    }    
+    .usersBox{
+        height: 110px;
+        /* border: solid; */
+        overflow-y: auto;
+
+    }
+    .adminIdnicator{
+        font-size: 8px;
+        opacity: 0.6;
+        color: antiquewhite;   
+    }
+    
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .addUserImageBox img{
+        width: 30px;
+        transition: 0.5s;
+        cursor: pointer;
+    }    
+    .addUserImageBox img:hover{
+        width: 30px;
+        opacity: 0.4;
+    }    
+    .usersBox{
+        height: 120px;
+        /* border: solid; */
+        overflow-y: auto;
+
+    }
+    .adminIdnicator{
+        font-size: 12px;
+        opacity: 0.6;
+        color: antiquewhite;   
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .addUserImageBox img{
+        width: 30px;
+        transition: 0.5s;
+        cursor: pointer;
+    }    
+    .addUserImageBox img:hover{
+        width: 30px;
+        opacity: 0.4;
+    }    
+    .usersBox{
+        margin-top: 20px;
+        height: 120px;
+        overflow-y: auto;
+        /* border: solid; */
+    }
+     .adminIdnicator{
+        font-size: 12px;
+        opacity: 0.6;
+        color: antiquewhite;   
+    }
+
+}
+
+.errorChat{
+    position: absolute;
+    margin-top: 85px;
+}

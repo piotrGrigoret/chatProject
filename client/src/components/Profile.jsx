@@ -74,7 +74,6 @@ export default function Profile() {
           error: "Nickname must not be less than 6 and more than 14 characters",
         }
         setAlert(copyAlert);
-        // copyAlert.error = "";
         setTimeout(() => {
           setAlert({
             success: "",

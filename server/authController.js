@@ -2,6 +2,7 @@ const axios = require('axios');
 const User = require("./models/User");
 const bcrypt = require('bcryptjs');
 const Message = require('./models/Message');
+const UserChat = require('./models/UserChat');
 
 
 const { connect } = require('mongoose');
@@ -26,6 +27,9 @@ class authController{
             const user = new User({login, password: hashPassword, nickname, image, date});
             await user.save();
             console.log("user save sucess");
+            const userChat = new UserChat({userID:user._id.toString(), chatID:'646fb927047547a251e85c4a'});
+            await userChat.save();
+
             return res.json({message: "User save sucess"});
         } catch (error) {
             console.log(error);
@@ -107,7 +111,12 @@ class authController{
     async getUser(req, res){
         try {
             const {chatMessage} = req.body;
-            const _id = chatMessage.userID;
+            let _id = "";
+            if(chatMessage.login){
+                _id = chatMessage._id;
+            }else{
+                _id = chatMessage.userID;
+            }
             const user = await User.findById(_id);
             console.log(user.nickname + "user find success");
             return res.json({user});
@@ -163,5 +172,6 @@ class authController{
             console.log(error);
         }
     }
+   
 }
 module.exports = new authController();
