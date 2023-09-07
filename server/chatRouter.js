@@ -10,6 +10,7 @@ router.post("/changeChatName", controller.changeChatName);
 router.post("/changefoto",controller.changefoto);
 router.post("/findUsersInChat",controller.findUsersInChat);
 router.post("/addUserInChat",controller.addUserInChat);
+router.post("/deleteUserFromChat",controller.deleteUserFromChat);
 
 
 module.exports = router

@@ -34,8 +34,9 @@ export default function AddUserPanel(props) {
             fetchData();
         }  
     }); 
+    
     const [usersInChat, setUsersInChat] = useState(null);
-
+    
     useEffect(() => {
         const fetchData = async () => {
         const response = await axios.post(url + "/chat/findUsersInChat", chatLocalStorage);
@@ -67,7 +68,11 @@ export default function AddUserPanel(props) {
     // const [isUserAddedInChat, setIsUserAddedInChat] = useState()
     const addUserInChat = async(user) => {
         try {
+            const newUsersInChat = [...usersInChat, user];
+            setUsersInChat(newUsersInChat);
+
             const response = await axios.post(url + "/chat/addUserInChat", {user, chatLocalStorage});
+            
         } catch (error) {
             console.log(error)
         }
@@ -121,9 +126,9 @@ export default function AddUserPanel(props) {
                       searchingUsers.map((user) =>(
                         <div className='hiddenMenuBoxMessage' key={user._id}>
                             <div className='boxImageMessage'><img  src={user.image} alt="" /></div>
-                            <div className='chatInMenuTitle'  >{user.nickname}</div>
+                            <div className='chatInMenuTitle'>{user.nickname}</div>
                             <div className='time'></div>
-                            <div className='imageBoxAddProfile' >{usersInChat.includes(user) ?
+                            <div className='imageBoxAddProfile' >{usersInChat.find( u => u._id === user._id) ?
                                 
                                 <img src="./added.png" alt="" />
                                 :
@@ -135,8 +140,6 @@ export default function AddUserPanel(props) {
                       ))
                       :
                       <div className='imageNotFoundBoxAddProfile'><img src="./notFound.png" alt="" /> </div>
-                      
-                      
                     }
                 </div>
             </div>
@@ -153,7 +156,8 @@ export default function AddUserPanel(props) {
                 // Применить стили для экранов с разрешением <= sm
                 width: "433px",
             }, 
-            }}>
+            }}
+        >
             <Button variant='standart' onClick={handleClose}>Close</Button>
           </DialogActions>
         </Dialog>

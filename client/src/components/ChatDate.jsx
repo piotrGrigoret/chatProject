@@ -129,7 +129,16 @@ useEffect(() => {
   }, [usersInChat]); 
 
 
-
+const onDeleteUserFromChatHandler = async(user) => {
+    try {
+        const response = await axios.post(url + "/chat/deleteUserFromChat", {user, chatLocalStorage});
+        console.log(response.data);
+        const filteredUsersInChat = usersInChat.filter((u) => u._id !== response.data.userID);
+        setUsersInChat(filteredUsersInChat);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
     return (
     <div className='icon'>
@@ -240,10 +249,11 @@ useEffect(() => {
                 <div className='titleUserList'>users:</div>
                 <div className='usersBox'>
                     {usersInChat && usersInChat.map((user)=>
-                        <div className='hiddenMenuBoxMessage' key={user._id} onClick={() =>props.setOpenProfile(user)}>
-                          <div className='boxImageMessage'><img  src={user.image} alt="" /></div>
-                          <div className='chatInMenuTitle'  >{user.nickname} </div>
+                        <div className='hiddenMenuBoxMessage' key={user._id} >
+                          <div className='boxImageMessage' onClick={() =>props.setOpenProfile(user)}><img  src={user.image} alt="" /></div>
+                          <div className='chatInMenuTitle'onClick={() =>props.setOpenProfile(user)}  >{user.nickname} </div>
                           <div>{user._id === chatLocalStorage.userID && <div className='adminIdnicator'>admin</div>}</div>
+                          <div className='imageDeleteBox'>{user._id !== chatLocalStorage.userID &&<img onClick={() => onDeleteUserFromChatHandler(user)} src="./delete.png" alt="" />}</div>
                         </div>         
                     )
 

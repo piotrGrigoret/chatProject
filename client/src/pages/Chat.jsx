@@ -68,7 +68,8 @@ export default class Chat extends Component {
             openChatCard: false,
             chatCardContent:{},
             openAddUserPanel:false,
-            addUserPanelContent:{}
+            addUserPanelContent:{},
+            newUsersInChat:[],
         }
     }
     
@@ -92,6 +93,10 @@ export default class Chat extends Component {
 
     async componentDidMount (){
         try {
+            const responseNewUsersInChat = await axios.post(url + "/chat/findUsersInChat", this.chatLocalStorage);
+            await this.setState({newUsersInChat: responseNewUsersInChat.data}); //логика для починки добавления юзеров в чат
+
+
             const responseChatList = await axios.post(url + "/chat/getChats");
             await this.setState({chatsList: responseChatList.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
 
@@ -102,7 +107,7 @@ export default class Chat extends Component {
             
             this.props.socket.on("receive_message", (data) => {
                 const isMessage = response.data.find((message) => { 
-                    
+                            
                     return new Date(message.text) == new Date(data.text)  
                     
                 });
@@ -308,19 +313,19 @@ export default class Chat extends Component {
                     />
                     <AddUserPanel
                         openAddUserPanel = {this.state.openAddUserPanel}
-                         setCloseAddUserPanel = {this.setCloseAddUserPanel}
-                         setOpenAddUserPanel = {this.setOpenAddUserPanel}
+                        setCloseAddUserPanel = {this.setCloseAddUserPanel}
+                        setOpenAddUserPanel = {this.setOpenAddUserPanel}
                     />
                     <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
                            
                         {this.state.chat !== {} ? 
                         <ScrollToBottom className='message-container'>
-                            { this.state.chatMessages.map((chatMessage, index) =>
+                            {this.state.chatMessages.map((chatMessage, index) =>
                                 this.isUserRegistrate._id == chatMessage.userID ?
                                         <div className='boxMessageOwn'   key={chatMessage.text + Math.floor(Math.random() * 100) + 1}>
                                             <li className="otherOwn"  >
                                                 <div className= "msgOwn">
-                                                    <div className="userOwn" onClick = {() =>this.setOpenProfile(chatMessage)} >{chatMessage.nickname} { this.chatLocalStorage.userID === chatMessage.userID  && <span className='adminIdnicator'>admin</span>} </div>
+                                                    <div className="userOwn" onClick = {() =>this.setOpenProfile(chatMessage)}> {chatMessage.nickname} { this.chatLocalStorage.userID === chatMessage.userID  && <span className='adminIdnicator'>admin</span>} </div>
                                                     <p>{chatMessage.text}</p>
                                                     <div className='time'>{moment(chatMessage.date).format('HH:mm')}</div>
                                             

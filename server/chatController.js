@@ -143,8 +143,8 @@ class chatController{
     async addUserInChat(req, res){
         try {
             const{user, chatLocalStorage} = req.body;
-            console.log(user);
-            console.log(chatLocalStorage);
+            // console.log(user);
+            // console.log(chatLocalStorage);
             const userChat = new UserChat({userID: user._id, chatID:chatLocalStorage._id});
             await userChat.save();
             console.log("user: " + user.nickname + " save success!");
@@ -155,6 +155,21 @@ class chatController{
         }
     }
 
+    async deleteUserFromChat(req, res){
+        try {
+            const{user, chatLocalStorage} = req.body;
+            const chatID = chatLocalStorage._id;
+            const chatsFindByChatID = await UserChat.find({chatID});
+            console.log("ffffffffffffffffffffffffffff");
+            const chatUserDelete = chatsFindByChatID.filter((c) => c.userID == user._id);
+            await UserChat.findOneAndDelete({_id: chatUserDelete[0]._id});
+            console.log(chatUserDelete[0]._id + " delete")
+            res.json(chatUserDelete[0]);
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
 }
 
 

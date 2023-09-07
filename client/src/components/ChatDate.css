@@ -60,6 +60,13 @@
         opacity: 0.6;
         color: antiquewhite;   
     }
+    .imageDeleteBox{
+        width: 20px;
+    }
+    .imageDeleteBox img{
+        width: 90%;
+        /* margin-top: 5px; */
+    }
     
 }
 
@@ -84,6 +91,13 @@
         opacity: 0.6;
         color: antiquewhite;   
     }
+    .imageDeleteBox{
+        width: 30px;
+    }
+    .imageDeleteBox img{
+        width: 90%;
+        margin-top: 5px;
+    }
 }
 
 @media only screen and (min-width: 1025px) {
@@ -106,6 +120,21 @@
         font-size: 12px;
         opacity: 0.6;
         color: antiquewhite;   
+    }
+    .imageDeleteBox{
+        width: 30px;
+    }
+    .imageDeleteBox img{
+        width: 90%;
+        margin-top: 5px;
+        opacity: 1;
+
+        transition: 0.4s;
+    }
+    .imageDeleteBox img :hover{
+        width: 90%;
+        margin-top: 5px;
+        opacity: 0.6;
     }
 
 }
