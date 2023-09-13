@@ -1,0 +1,129 @@
+
+
+
+
+
+@media only screen and (max-width: 650px) {
+
+    .imagesPreloaderBox{
+        width: 250px;
+        /* border: solid; */
+        margin: 0 auto;
+        margin-top: 15px;
+
+    }
+    .preloaderGifBox{
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        /* border: solid; */
+        margin: 0 auto;
+        gap: 10px;
+    }
+    .preloaderGif{
+        width: 100%;
+        /* height: 100px; */
+        /* border: solid; */
+    }
+    .preloaderGif img{
+        width: 100%;
+        height: 120px;
+        /* margin-left: 40%; */
+        border-radius: 20px;
+    }
+
+    .preloaderImage{
+        width: 59%;
+        /* border: solid; */
+        margin: 0 auto;
+
+    }
+    .preloaderImage img{
+        width: 100%;
+    }
+
+
+}
+
+@media only screen and (min-width: 651px) and (max-width: 1024px) {
+    .imagesPreloaderBox{
+        width: 800px;
+        /* border: solid; */
+        margin: 0 auto;
+        margin-top: 15px;
+
+    }
+    .preloaderGifBox{
+        width: 35%;
+        display: grid;
+        grid-template-columns: auto auto;
+        /* border: solid; */
+        margin: 0 auto;
+        gap: 10px;
+    }
+    .preloaderGif{
+        width: 100%;
+        /* height: 100px; */
+        /* border: solid; */
+    }
+    .preloaderGif img{
+        width: 100%;
+        height: 160px;
+        /* margin-left: 40%; */
+        border-radius: 20px;
+    }
+
+    .preloaderImage{
+        width: 19%;
+        /* border: solid; */
+        margin: 0 auto;
+
+    }
+    .preloaderImage img{
+        width: 100%;
+    }
+
+
+
+}
+
+@media only screen and (min-width: 1025px) {
+    .imagesPreloaderBox{
+        width: 900px;
+        /* border: solid; */
+        margin: 0 auto;
+        margin-top: 15px;
+
+    }
+    .preloaderGifBox{
+        width: 35%;
+        display: grid;
+        grid-template-columns: auto auto;
+        /* border: solid; */
+        margin: 0 auto;
+        gap: 10px;
+    }
+    .preloaderGif{
+        width: 100%;
+        /* height: 100px; */
+        /* border: solid; */
+    }
+    .preloaderGif img{
+        width: 100%;
+        height: 170px;
+        /* margin-left: 40%; */
+        border-radius: 20px;
+    }
+
+    .preloaderImage{
+        width: 19%;
+        /* border: solid; */
+        margin: 0 auto;
+
+    }
+    .preloaderImage img{
+        width: 100%;
+    }
+
+
+}

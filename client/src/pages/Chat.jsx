@@ -10,7 +10,7 @@ import MenuAppBar from '../components/MenuAppBar';
 import ResponsiveDrawer from '../components/ResponsiveDrawer';
 import ChatDate from '../components/ChatDate';
 import AddUserPanel from '../components/AddUserPanel';
-
+import Preloader from '../components/Preloader';
 // import io from 'socket.io-client';
 // const socket = io('http://localhost:5000');
 
@@ -70,6 +70,7 @@ export default class Chat extends Component {
             openAddUserPanel:false,
             addUserPanelContent:{},
             newUsersInChat:[],
+            isServerLoad: false
         }
     }
     
@@ -90,15 +91,13 @@ export default class Chat extends Component {
         
     }
      
-
     async componentDidMount (){
         try {
             const responseNewUsersInChat = await axios.post(url + "/chat/findUsersInChat", this.chatLocalStorage);
             await this.setState({newUsersInChat: responseNewUsersInChat.data}); //логика для починки добавления юзеров в чат
             if(responseNewUsersInChat){
-                console.log("zdarova");
+                this.setState({isServerLoad: true});
             }
-
             const responseChatList = await axios.post(url + "/chat/getChats");
             await this.setState({chatsList: responseChatList.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
 
@@ -123,6 +122,7 @@ export default class Chat extends Component {
     forAreaVar = "";
     
     messageCompleteHandler = (event, e) =>{
+      
         if(event.emoji){
             // console.log(event.emoji);
             const messageCopy = {...this.state.message, text: this.state.message.text + event.emoji, chatID: this.state.chat._id, date: new Date()};
@@ -318,6 +318,7 @@ export default class Chat extends Component {
                         setCloseAddUserPanel = {this.setCloseAddUserPanel}
                         setOpenAddUserPanel = {this.setOpenAddUserPanel}
                     />
+                    {!this.state.isServerLoad && <Preloader/>}
                     <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
                            
                         {this.state.chat !== {} ? 
