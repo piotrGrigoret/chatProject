@@ -95,7 +95,9 @@ export default class Chat extends Component {
         try {
             const responseNewUsersInChat = await axios.post(url + "/chat/findUsersInChat", this.chatLocalStorage);
             await this.setState({newUsersInChat: responseNewUsersInChat.data}); //логика для починки добавления юзеров в чат
-
+            if(responseNewUsersInChat){
+                console.log("zdarova");
+            }
 
             const responseChatList = await axios.post(url + "/chat/getChats");
             await this.setState({chatsList: responseChatList.data.sort((a, b) =>new Date(b.lastMessageTime) - new Date(a.lastMessageTime))});
