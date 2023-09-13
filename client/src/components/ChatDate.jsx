@@ -139,8 +139,8 @@ const onDeleteUserFromChatHandler = async(user) => {
         console.log(error)
     }
 }
-
-    return (
+const[isAdmin, setIsAdmin] = useState(userLocalStorage._id == chatLocalStorage.userID ? true : false);    
+return (
     <div className='icon'>
         <Dialog
           open={props.openChatCard} 
@@ -253,7 +253,7 @@ const onDeleteUserFromChatHandler = async(user) => {
                           <div className='boxImageMessage' onClick={() =>props.setOpenProfile(user)}><img  src={user.image} alt="" /></div>
                           <div className='chatInMenuTitle'onClick={() =>props.setOpenProfile(user)}  >{user.nickname} </div>
                           <div>{user._id === chatLocalStorage.userID && <div className='adminIdnicator'>admin</div>}</div>
-                          <div className='imageDeleteBox'>{user._id !== chatLocalStorage.userID &&<img onClick={() => onDeleteUserFromChatHandler(user)} src="./delete.png" alt="" />}</div>
+                          {userLocalStorage._id == chatLocalStorage.userID &&<div className='imageDeleteBox'>{user._id !== chatLocalStorage.userID && <img onClick={() => onDeleteUserFromChatHandler(user)} src="./delete.png" alt="" />}</div>}
                         </div>         
                     )
 
