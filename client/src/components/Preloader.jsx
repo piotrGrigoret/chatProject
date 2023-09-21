@@ -13,11 +13,9 @@ export default function NestedModal() {
       <Modal
         open={open}
         // onClose={handleClose}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
       >
         {/* <Box sx={{ ...style, width: 400 }}> */}
-        <div className='imagesPreloaderBox'>
+        <div style={{ border: "none" }} className='imagesPreloaderBox'>
           <div className='preloaderImage'><img src='./wait.png'></img></div>   
           <div className='preloaderGifBox'>
             <div className='preloaderGif'><img src='./serveConnectionGif.gif'></img></div>   

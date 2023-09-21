@@ -293,7 +293,7 @@ export default class Chat extends Component {
                                 <ArrowBackIcon  />
                             </IconButton>
                         </div>
-                        {this.state.chat !== {} && 
+                        {this.state.chat  && 
                             <div onClick={this.setOpenChatCard} className={this.state.displayAllElOnSmallEcran == true ? 'nameOfChat' : 'nameOfChatDisableOnMobile'}>
                                 <div>{this.state.chat.name} <img src="./configuration.png" alt="" /> </div>
                                 
@@ -321,7 +321,7 @@ export default class Chat extends Component {
                     {!this.state.isServerLoad && <Preloader/>}
                     <div className= {this.state.displayAllElOnSmallEcran == true ? 'chat' : 'chatDisableOnMobile'}>
                            
-                        {this.state.chat !== {} ? 
+                        {this.state.chat  ? 
                         <ScrollToBottom className='message-container'>
                             {this.state.chatMessages.map((chatMessage, index) =>
                                 this.isUserRegistrate._id == chatMessage.userID ?
@@ -357,7 +357,7 @@ export default class Chat extends Component {
                     
 
                                 
-                {this.state.chat !== {} && 
+                {this.state.chat  && 
 
                     <div className={this.state.displayAllElOnSmallEcran == true ? 'textFieldContainer' : 'textFieldContainerDisableOnMobile'}>
                         <div onClick={this.sendMesageHandler} className= {this.state.forArea.length > 0 ? 'sendMessage' : 'sendMessageDisable'}><SendIcon/></div>
