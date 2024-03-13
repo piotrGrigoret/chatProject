@@ -50,25 +50,26 @@ reload = () =>{
          <Router>
             
             <Routes>
-          {this.isChatLocalStorageActiv &&
-            <Route 
-                path ='/'
-                element = {
-                <Chat
-                  socket={this.socket}
-                />  
+                {this.isChatLocalStorageActiv &&
+                  <Route 
+                      path ='/'
+                      element = {
+                      <Chat
+                        socket={this.socket}
+                      />  
+                      }
+                  />
                 }
-              />
-          }
-              <Route 
-                path ='/registration'
-                element = {
-                  <Registration/>
-                }
-              />
+                <Route 
+                  path ='/registration'
+                  element = {
+                    <Registration/>
+                  }
+                />
+                
+                
+              </Routes>
               
-              
-            </Routes>
           </Router>
         </>        
 

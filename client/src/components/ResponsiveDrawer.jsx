@@ -119,7 +119,7 @@ async componentDidMount(){
                   onChange={this.completeFindWordForSearchChat}
                   InputProps={{
                     style: { color: 'rgb(189, 185, 177)'},
-    
+                    
                   }}
                   InputLabelProps={{
                     style: { color: 'rgb(189, 185, 177)' }, 
@@ -129,6 +129,7 @@ async componentDidMount(){
                 <FormDialog updateChatsList={this.updateChatsList} chatsList={this.state.chatsList} lastMessage = {this.props.lastMessage}  />
               </div>
             }
+            
               {this.state.isLogin ?
                 <div className={'hiddenMenuBoxMessages'} >
 

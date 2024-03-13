@@ -143,7 +143,7 @@ export default class Chat extends Component {
             this.sendMesageHandler();
         
         }
-      }
+    }
     sendMesageHandler = async() =>{
         
             if(this.state.forArea.length > 0 && this.state.forArea.length < 200){
@@ -211,21 +211,11 @@ export default class Chat extends Component {
     
     }
 
-    // openProfileCard = () => {
-    //     console.log(this.state.openProfileCard);
-
-    //     this.setState({openProfileCard: true});
-    // }
-
-    // handleCloseProfileCard = () => {
-    //     console.log(this.state.openProfileCard);
-
-    //     this.setState({openProfileCard: false});
-
-    // }
+ 
     setCloseProfile = () => {
         this.setState({openProfile: false}); 
     }
+    
     setOpenProfile = async(chatMessage) => {
         this.setState({openProfile: true});
         

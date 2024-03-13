@@ -69,9 +69,7 @@ export default function FormDialog(props) {
   return (
     <div className='icon'>
         <AddCircleOutlineIcon onClick={handleClickOpen} style={{ fontSize: 30, color:"white" }}/>
-      {/* <Button variant="outlined" >
-        Open form dialog
-      </Button>  */}
+     
       <Dialog 
         open={open} 
         onClose={handleClose}
@@ -85,7 +83,6 @@ export default function FormDialog(props) {
         <DialogTitle sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>Create a chat</DialogTitle>
         <DialogContent sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>
           <DialogContentText sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>
-            {/* Jora Jora Jora */}
           </DialogContentText>
           <TextField
               onChange={changeNewChat}
@@ -119,32 +116,10 @@ export default function FormDialog(props) {
               }
           />
         
-        {/* <FormControl 
-            
-            sx={{
-                mt:"10px",
-                width:"240px"
-              }}
-        >
-        <InputLabel sx= {{color:"white"}} id="demo-simple-select-label">Type</InputLabel>
-        <Select
- 
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Type"
-            sx= {{color:"white"}}
-          
-          onChange={handleChange}
-       >
-          <MenuItem value={"Privat"}>Privat</MenuItem>
-          <MenuItem value={"Common"}>Common chat</MenuItem>
-        </Select>
-      </FormControl> */}
+       
         </DialogContent>
         <DialogActions sx={{backgroundColor:"rgb(40, 40, 53)", color:"white"}}>
           <Button variant='standart' onClick={addChat}>Create</Button>
-          {/* <Button onClick={handleClose}>Subscribe</Button> */}
         </DialogActions>
       </Dialog>
     </div>

@@ -154,29 +154,31 @@ return (
                 </Alert>
                 </div>
             }
-        <DialogTitle className='dialogTitle'  sx={{
-            backgroundColor: "rgb(40, 40, 53)",
-            color: "white",
-            [theme.breakpoints.down('sm')]: {
-                width: "181px",  
-            },
-            [theme.breakpoints.up('sm')]: {
-                width: "401px",
+        <DialogTitle className='dialogTitle'  
+            sx={{
+                backgroundColor: "rgb(40, 40, 53)",
+                color: "white",
+                [theme.breakpoints.down('sm')]: {
+                    width: "181px",  
+                },
+                [theme.breakpoints.up('sm')]: {
+                    width: "401px",
 
-            },
+                },
             }} 
         >
         </DialogTitle>
-        <DialogContent sx={{
-            backgroundColor:"rgb(40, 40, 53)", 
-            color:"white", 
-            [theme.breakpoints.down('sm')]: {
-                width: "181px",  
-            },
-            [theme.breakpoints.up('sm')]: {
-                width: "401px",
-            },
-        }}
+        <DialogContent 
+            sx={{
+                backgroundColor:"rgb(40, 40, 53)", 
+                color:"white", 
+                [theme.breakpoints.down('sm')]: {
+                    width: "181px",  
+                },
+                [theme.breakpoints.up('sm')]: {
+                    width: "401px",
+                },
+            }}
         >
             <div className='profileDateBox'>
             <div className={userLocalStorage._id !== chatLocalStorage.userID ? 'descriptionChatDisable' : 'descriptionChat'}>
@@ -248,7 +250,9 @@ return (
             <div className='userslist'> 
                 <div className='titleUserList'>users:</div>
                 <div className='usersBox'>
-                    {usersInChat && usersInChat.map((user)=>
+                    {usersInChat && 
+                    
+                        usersInChat.map((user)=>
                         <div className='hiddenMenuBoxMessage' key={user._id} >
                           <div className='boxImageMessage' onClick={() =>props.setOpenProfile(user)}><img  src={user.image} alt="" /></div>
                           <div className='chatInMenuTitle'onClick={() =>props.setOpenProfile(user)}  >{user.nickname} </div>
@@ -265,16 +269,18 @@ return (
 
             </div>
         </DialogContent>
-        <DialogActions sx={{
-            backgroundColor:"rgb(40, 40, 53)", 
-            color:"white" , 
-            [theme.breakpoints.down('sm')]: {
-                width: "213px",  
-            },
-            [theme.breakpoints.up('sm')]: {
-                // Применить стили для экранов с разрешением <= sm
-                width: "433px",
-            }, 
+
+        <DialogActions 
+            sx={{
+                backgroundColor:"rgb(40, 40, 53)", 
+                color:"white" , 
+                [theme.breakpoints.down('sm')]: {
+                    width: "213px",  
+                },
+                [theme.breakpoints.up('sm')]: {
+                    // Применить стили для экранов с разрешением <= sm
+                    width: "433px",
+                }, 
             }}>
             <Button variant='standart' onClick={props.setCloseChatCard}>Close</Button>
           </DialogActions>

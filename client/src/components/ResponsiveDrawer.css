@@ -117,6 +117,7 @@
         .boxImageMessage{
             height: 70px;
             width: 70px;
+            
         
         }
         .boxImageMessage img{
@@ -125,6 +126,8 @@
             height: 70%; 
             width: 70%; 
             border-radius: 100%;
+            object-fit: cover;
+            object-position: center;
         }
         .chatInMenuTitle{
             color:white;
@@ -231,6 +234,8 @@
             height: 90%;
             width: 90%; 
             border-radius: 100%;
+            object-fit: cover;
+            object-position: center;
         }
         .chatInMenuTitle{
             color:white;
@@ -321,12 +326,15 @@
         .boxImageMessage{
             height: 70px;
             width: 70px;
+
         }
         .boxImageMessage img{
             margin-left: 6px;
             margin-top: 15px;
             height: 90%;
             width: 90%;
+            object-fit: cover;
+            object-position: center;
             border-radius: 100%;
         }
         .chatInMenuTitle{
