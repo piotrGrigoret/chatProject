@@ -12,10 +12,6 @@ import "./Profile.css";
 import moment from 'moment';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import CheckIcon from '@mui/icons-material/Check';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
@@ -24,7 +20,6 @@ import url from "../constants";
 export default function Profile() {
   const userData = JSON.parse(localStorage.getItem('user'));
   const [open, setOpen] = React.useState(false);
-
   const [alert, setAlert] = React.useState({
     success: "",
     error: "",

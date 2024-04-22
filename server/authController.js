@@ -87,7 +87,7 @@ class authController{
 
             console.log("password change success: \n");
             return res.json({message: "Password save success", changeUser});
-        } catch (error) {
+        } catch (error){
             console.log(error);
         }
     }
