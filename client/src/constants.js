@@ -1,4 +1,4 @@
-const ENV = 'dev';
+const ENV = 'prod';
 const urls = {
     prod: 'https://chatappserver-bwn9.onrender.com',
     dev: 'http://localhost:3001',
