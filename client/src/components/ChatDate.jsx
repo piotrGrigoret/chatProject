@@ -143,6 +143,7 @@ const[isAdmin, setIsAdmin] = useState(userLocalStorage._id == chatLocalStorage.u
 return (
     <div className='icon'>
         <Dialog
+  
           open={props.openChatCard} 
           onClose={props.setCloseChatCard}
         >
@@ -172,6 +173,7 @@ return (
             sx={{
                 backgroundColor:"rgb(40, 40, 53)", 
                 color:"white", 
+                overflow:"hidden",                
                 [theme.breakpoints.down('sm')]: {
                     width: "181px",  
                 },

@@ -25,13 +25,13 @@ html body {
     line-height: 40px;
     text-align: center;
     /* border: solid; */
-    transition: 1s;
+    transition: .2s;
     cursor: pointer;
 }
 .nameOfChat img{
-    width: 27px;
+    width: 23px;
     position: absolute;
-    margin-top: 7px;
+    margin-top: 10px;
     opacity: 0.6;
 }
 .nameOfChat:hover{

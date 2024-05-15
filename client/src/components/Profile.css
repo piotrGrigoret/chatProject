@@ -92,18 +92,20 @@
   input[type=file] {
     max-width: 100%;
     color: #444;
-    padding: 1.4vw;
-    font-size: 13px;
-    background: #fff;
+    padding: 1.5vw;
+    font-size: 0px;
+    /* background: #fff; */
     border-radius: 1vw;
     border: 0.1vw solid #555;
-  }
+    border: 0.15vw dashed #555;  
+}
   
   input[type=file]::file-selector-button {
     border: none;
-    background: #084cdf;
+    background: #031c53;
     border-radius: 0.1vw;
-    font-size: 0.9vw;
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
     color: #fff;
     cursor: pointer;
     transition: background .2s ease-in-out;

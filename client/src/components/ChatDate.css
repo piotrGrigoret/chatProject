@@ -43,6 +43,7 @@
         width: 30px;
         transition: 0.5s;
         cursor: pointer;
+        margin-top: 10px;
     }    
     .addUserImageBox img:hover{
         width: 30px;
@@ -74,11 +75,17 @@
     
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
+    .fotoCont{
+        height: 160px;
+    }
+
     .addUserImageBox img{
         width: 30px;
         transition: 0.5s;
         cursor: pointer;
+        margin-top:10px;
+
     }    
     .addUserImageBox img:hover{
         width: 30px;
@@ -98,6 +105,7 @@
     .imageDeleteBox{
         width: 30px;
         height: 120px;
+        display: none;
         position: relative;
     }
     .imageDeleteBox img{
@@ -120,6 +128,8 @@
         width: 30px;
         transition: 0.5s;
         cursor: pointer;
+        margin-top: 10px;
+
     }    
     .addUserImageBox img:hover{
         width: 30px;
@@ -140,6 +150,7 @@
         width: 30px;
         height: 120px;
         position: relative;
+    
     }
     .imageDeleteBox img{
         width: 90%;
